@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semana3</title>
+  </head>
+  <body>
+    Entre com os dados separados por virgula:
+    <input type="text" id="dados" />
+    <button onclick="criarTabela()">Gerar tabela</button>
+    <script>
+      function criarTabela() {
+        const dados = document.getElementById("dados").value;
+        let vet = dados.split(" ");
+        let vetN = convertNumber(vet);
+        let maior = Math.max.apply(null, vetN);
+        let menor = Math.min.apply(null, vetN);
+        let at = maior - menor + 1;
+        let k = Math.sqrt(vetN.length);
+        k = Math.trunc(k);
+        let infos = infoTab(at, k);
+        const linhas = linhasTab(vetN, infos[1], infos[0]);
+        const valores = valoresTab(vetN, linhas);
+        console.log(linhas);
+        console.log(valores);
+        console.log(vetN);
+      }
+      function valoresTab(valor, linha) {
+        let vetor = [];
+
+        for (let i = 0; i <= linha.length; i++) {
+          let cont = 0;
+          for (b in valor) {
+            if (valor[b] >= linha[i] && valor[b] < linha[i + 1]) {
+              cont++;
+            }
+          }
+          vetor.push(cont);
+        }
+
+        return vetor;
+      }
+
+      function linhasTab(vet, amp, linha) {
+        let vetor = [];
+        let min = vet[0];
+        vetor.push(min);
+        for (let i = 0; i <= linha - 2; i++) {
+          vetor.push(vetor[i] + amp);
+        }
+        return vetor;
+      }
+      const convertNumber = vetor => {
+        let novo = [];
+        vetor.forEach((vet, i) => {
+          novo.push(Number(vet));
+        });
+        novo.sort((a, b) => a - b);
+        return novo;
+      };
+      function infoTab(at, k) {
+        let linha;
+        let amp = null;
+
+        do {
+          if (Number.isInteger(at / (k - 1))) {
+            linha = k - 1;
+            amp = at / (k - 1);
+          } else if (Number.isInteger(at / k)) {
+            linha = k;
+            amp = at / k;
+          } else if (Number.isInteger(at / (k + 1))) {
+            linha = k + 1;
+            amp = at / (k + 1);
+          } else {
+            at++;
+          }
+        } while (amp == null);
+        return [linha, amp];
+      }
+
+      function carregar(info) {
+        console.log(info);
+        var idtab = document.getElementById("table");
+        info.forEach((func, i) => {
+          let row = idtab.insertRow(i);
+          func.forEach((nota, i) => {
+            nota.forEach((n1, i) => {
+              let celula = row.insertCell(i);
+              celula.innerHTML = n1;
+            });
+          });
+        });
+        var header = [
+          "Monitora",
+          "Colaborador",
+          "Data",
+          "Hora",
+          "Duração",
+          "Atraso",
+          "Abordagem",
+          "Simpatia",
+          "Cordialidade",
+          "Argumentação",
+          "Objetividade",
+          "Condução",
+          "Encerramento",
+          "Nota",
+          "Observação"
+        ];
+        let row = idtab.insertRow(0);
+        header.forEach((head, i) => {
+          //let cell = row.insertCell(i)
+          row.insertCell(i).outerHTML = "<th>" + head + "</th>";
+        });
+      }
+    </script>
+  </body>
+</html>
