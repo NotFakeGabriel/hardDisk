@@ -6,9 +6,12 @@
     <title>Semana3</title>
   </head>
   <body>
-    Entre com os dados separados por virgula:
+    Entre com os dados separados por espaço:
     <input type="text" id="dados" />
     <button onclick="criarTabela()">Gerar tabela</button>
+    <div>
+      <table id="table"></table>
+    </div>
     <script>
       function criarTabela() {
         const dados = document.getElementById("dados").value;
@@ -22,14 +25,34 @@
         let infos = infoTab(at, k);
         const linhas = linhasTab(vetN, infos[1], infos[0]);
         const valores = valoresTab(vetN, linhas);
-        console.log(linhas);
-        console.log(valores);
-        console.log(vetN);
+        const linhaTxt = textosColuna1(linhas);
+        console.log(linhaTxt, valores);
+        tabela(linhaTxt, valores, vetN.length);
+      }
+      function tabela(coluna1, coluna2, total) {
+        const idtab = document.getElementById("table");
+
+        coluna1.forEach((func, i) => {
+          let row = idtab.insertRow(i);
+          let cell = row.insertCell(0);
+          cell.innerHTML = coluna1[i];
+          cell = row.insertCell(1);
+          cell.innerHTML = coluna2[i];
+          cell = row.insertCell(2);
+          cell.innerHTML = ((coluna2[i] * 100) / total).toFixed(2);
+        });
+      }
+      function textosColuna1(valores) {
+        let vetor = [];
+        for (let i = 0; i <= valores.length - 2; i++) {
+          vetor.push(`${valores[i]} |---- ${valores[i + 1]}`);
+        }
+        return vetor;
       }
       function valoresTab(valor, linha) {
         let vetor = [];
 
-        for (let i = 0; i <= linha.length; i++) {
+        for (let i = 0; i <= linha.length - 2; i++) {
           let cont = 0;
           for (b in valor) {
             if (valor[b] >= linha[i] && valor[b] < linha[i + 1]) {
@@ -38,7 +61,6 @@
           }
           vetor.push(cont);
         }
-
         return vetor;
       }
 
@@ -46,7 +68,7 @@
         let vetor = [];
         let min = vet[0];
         vetor.push(min);
-        for (let i = 0; i <= linha - 2; i++) {
+        for (let i = 0; i <= linha - 1; i++) {
           vetor.push(vetor[i] + amp);
         }
         return vetor;
@@ -78,26 +100,6 @@
           }
         } while (amp == null);
         return [linha, amp];
-      }
-
-      function carregar(info) {
-        console.log(info);
-        var idtab = document.getElementById("table");
-        info.forEach((func, i) => {
-          let row = idtab.insertRow(i);
-          func.forEach((nota, i) => {
-            nota.forEach((n1, i) => {
-              let celula = row.insertCell(i);
-              celula.innerHTML = n1;
-            });
-          });
-        });
-        var header = ["Nome colunas tabelas..."];
-        let row = idtab.insertRow(0);
-        header.forEach((head, i) => {
-          //let cell = row.insertCell(i)
-          row.insertCell(i).outerHTML = "<th>" + head + "</th>";
-        });
       }
     </script>
   </body>
