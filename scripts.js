@@ -16,8 +16,8 @@ function criarTabela() {
   const xiv = xi(linhas);
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
-  tabela(linhaTxt, valores, vetN.length, coluna4);
-
+  tabela(linhaTxt, valores, vetN.length, coluna4, xiv);
+  console.log(xiv);
   const resul = document.getElementById("resultados");
 
   resul.innerHTML += `<div>Média= ${mediav} / Moda= ${modav}</div>`;
@@ -35,7 +35,7 @@ function coluna(valor) {
   }
   return vet;
 }
-function tabela(coluna1, coluna2, total, coluna4) {
+function tabela(coluna1, coluna2, total, coluna4, xiv) {
   const idtab = document.getElementById("table");
 
   coluna1.forEach((func, i) => {
@@ -45,14 +45,18 @@ function tabela(coluna1, coluna2, total, coluna4) {
     cell = row.insertCell(1);
     cell.innerHTML = coluna2[i];
     cell = row.insertCell(2);
-    cell.innerHTML = ((coluna2[i] * 100) / total).toFixed(2);
+    cell.innerHTML = xiv[i]; //xi
     cell = row.insertCell(3);
-    cell.innerHTML = coluna4[i];
+    cell.innerHTML = xiv[i] * coluna2[i]; //xi.fi
     cell = row.insertCell(4);
+    cell.innerHTML = ((coluna2[i] * 100) / total).toFixed(2);
+    cell = row.insertCell(5);
+    cell.innerHTML = coluna4[i];
+    cell = row.insertCell(6);
     cell.innerHTML = ((coluna4[i] * 100) / total).toFixed(2);
   });
 
-  let header = ["Variavel", "Fi", "FR %", "Fac", "Fac %"];
+  let header = ["Variavel", "Fi", "xi", "xi.fi", "FR %", "Fac", "Fac %"];
   let row = idtab.insertRow(0);
   header.forEach((head, i) => {
     row.insertCell(i).outerHTML = "<th>" + head + "</th>";
