@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h4>Qualitativa</h4>
+    Entre com os dados separados por espaço:
+    <input type="text" id="dados1" />
+    <button onclick="qualitativa()">Gerar tabela</button>
+    <div>
+      <table id="table1"></table>
+    </div>
+    <h4>Quantitativa</h4>
     Entre com os dados separados por espaço:
     <input type="text" id="dados" />
     <button onclick="criarTabela()">Gerar tabela</button>
-    <div>
+    <div id="resultados">
       <table id="table"></table>
     </div>
     <script src="scripts.js"></script>

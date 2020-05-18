@@ -13,7 +13,14 @@ function criarTabela() {
   const valores = valoresTab(vetN, linhas);
   const linhaTxt = textosColuna1(linhas);
   const coluna4 = coluna(valores);
+  const xiv = xi(linhas);
+  const mediav = media(xiv, valores);
+  const modav = moda(valores, xiv);
   tabela(linhaTxt, valores, vetN.length, coluna4);
+
+  const resul = document.getElementById("resultados");
+
+  resul.innerHTML += `<div>Média= ${mediav} / Moda= ${modav}</div>`;
 }
 function coluna(valor) {
   let vet = [];
@@ -82,7 +89,7 @@ function linhasTab(vet, amp, linha) {
   }
   return vetor;
 }
-const convertNumber = vetor => {
+const convertNumber = (vetor) => {
   let novo = [];
   vetor.forEach((vet, i) => {
     novo.push(Number(vet));
@@ -110,3 +117,32 @@ function infoTab(at, k) {
   } while (amp == null);
   return [linha, amp];
 }
+function xi(val) {
+  let vet = [];
+  for (let i = 0; i <= val.length - 2; i++) {
+    vet.push((val[i] + val[i + 1]) / 2);
+  }
+  return vet;
+}
+function media(xi, total) {
+  let tot = 0;
+  for (let i = 0; i < total.length; i++) {
+    tot += total[i];
+  }
+  let soma = 0;
+  for (let i = 0; i < xi.length; i++) {
+    soma += xi[i] * total[i];
+  }
+
+  let resultado = soma / tot;
+  return resultado;
+}
+function moda(valores, xi) {
+  let maior = Math.max.apply(null, valores);
+  let i = valores.indexOf(maior);
+  return xi[i];
+}
+
+//Qualitativa!!!!!!!!!!!!!!!!!
+
+function Qualitativa() {}
