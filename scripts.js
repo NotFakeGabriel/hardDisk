@@ -1,4 +1,6 @@
 function criarTabela() {
+  const resul = document.getElementById("resultados");
+  resul.innerHTML = "";
   document.getElementById("table").innerHTML = "";
   const dados = document.getElementById("dados").value;
   let vet = dados.split(" ");
@@ -17,10 +19,8 @@ function criarTabela() {
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
   tabela(linhaTxt, valores, vetN.length, coluna4, xiv);
-  console.log(xiv);
-  const resul = document.getElementById("resultados");
 
-  resul.innerHTML += `<div>Média= ${mediav} / Moda= ${modav}</div>`;
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav}`;
 }
 function coluna(valor) {
   let vet = [];
@@ -149,4 +149,71 @@ function moda(valores, xi) {
 
 //Qualitativa!!!!!!!!!!!!!!!!!
 
-function Qualitativa() {}
+function qualitativa() {
+  const resul = document.getElementById("resultados1");
+  resul.innerHTML = "";
+  document.getElementById("table1").innerHTML = "";
+  const dados1 = document.getElementById("dados1").value;
+  let vet = dados1.split(" ");
+  let vetN = convertNumber(vet);
+  let rol = vetN.sort((a, b) => a - b);
+  let coluna0 = linha(rol);
+  let coluna1 = col1(coluna0, rol);
+  let coluna2 = coluna(coluna1);
+  let mediaV = media(coluna0, coluna1);
+  let modaV = moda(coluna1, coluna0);
+  criar(coluna0, coluna1, coluna2);
+
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV}`;
+}
+
+function linha(rol) {
+  let vet = [];
+  let verif;
+  for (let i = 0; i < rol.length; i++) {
+    if (i == 0) {
+      vet.push(rol[i]);
+      verif = rol[i];
+    } else {
+      if (verif == rol[i]) {
+      } else {
+        vet.push(rol[i]);
+        verif = rol[i];
+      }
+    }
+  }
+  return vet;
+}
+
+function col1(col0, rol) {
+  let vet = [];
+  let sum = 0;
+  for (let i = 0; i < col0.length; i++) {
+    sum = 0;
+    for (let j = 0; j < rol.length; j++) {
+      if (col0[i] == rol[j]) {
+        sum++;
+      }
+    }
+    vet.push(sum);
+  }
+  return vet;
+}
+function criar(coluna0, coluna1, coluna2) {
+  const idtab = document.getElementById("table1");
+  coluna1.forEach((func, i) => {
+    let row = idtab.insertRow(i);
+    let cell = row.insertCell(0);
+    cell.innerHTML = coluna0[i];
+    cell = row.insertCell(1);
+    cell.innerHTML = coluna1[i];
+    cell = row.insertCell(2);
+    cell.innerHTML = coluna2[i];
+  });
+
+  let header = ["xi", "fi", "fac"];
+  let row = idtab.insertRow(0);
+  header.forEach((head, i) => {
+    row.insertCell(i).outerHTML = "<th>" + head + "</th>";
+  });
+}
