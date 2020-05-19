@@ -18,9 +18,17 @@ function criarTabela() {
   const xiv = xi(linhas);
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
+  const medianav = medianaquant(
+    linhaTxt,
+    valores,
+    vetN.length,
+    coluna4,
+    xiv,
+    linhas
+  );
   tabela(linhaTxt, valores, vetN.length, coluna4, xiv);
 
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav}`;
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav}`;
 }
 function coluna(valor) {
   let vet = [];
@@ -37,7 +45,6 @@ function coluna(valor) {
 }
 function tabela(coluna1, coluna2, total, coluna4, xiv) {
   const idtab = document.getElementById("table");
-
   coluna1.forEach((func, i) => {
     let row = idtab.insertRow(i);
     let cell = row.insertCell(0);
@@ -147,6 +154,48 @@ function moda(valores, xi) {
   return xi[i];
 }
 
+function medianaquant(coluna1, coluna2, total, coluna4, xiv, linhas) {
+  console.log(coluna1);
+  console.log(coluna2);
+  console.log(total);
+  console.log(coluna4);
+  console.log(xiv);
+  console.log(linhas);
+  let pos = Math.round(total / 2);
+  console.log(pos);
+  let fant;
+  let li;
+  let fimd;
+  let indice;
+  for (let i = 1; i <= coluna4.length - 1; i++) {
+    if (pos < coluna4[1]) {
+      fant = coluna4[0];
+      i = coluna4.length - 1;
+    }
+    if (pos < coluna4[i] && pos > coluna4[i - 1]) {
+      fant = coluna4[i - 1];
+    } else if (pos == coluna4[i - 1]) {
+      fant = coluna4[i - 1];
+    }
+  }
+  for (var j = 0; j <= coluna4.length - 1; j++) {
+    if (pos < coluna4[0]) {
+      indice = 0;
+      j = coluna4.length - 1;
+    }
+    if (pos < coluna4[j] && pos > coluna4[j - 1]) {
+      indice = j;
+    } else if (pos == coluna4[j - 1]) {
+      indice = j;
+    }
+  }
+  li = linhas[indice];
+  fimd = coluna2[indice];
+  let h = linhas[1] - linhas[0];
+  let mediana = li + ((total / 2 - fant) / fimd) * h;
+  return mediana;
+}
+
 //Qualitativa!!!!!!!!!!!!!!!!!
 
 function qualitativa() {
@@ -162,9 +211,10 @@ function qualitativa() {
   let coluna2 = coluna(coluna1);
   let mediaV = media(coluna0, coluna1);
   let modaV = moda(coluna1, coluna0);
+  let medianaV = medianaquali(coluna0, coluna2);
   criar(coluna0, coluna1, coluna2);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV}`;
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
 }
 
 function linha(rol) {
@@ -216,4 +266,39 @@ function criar(coluna0, coluna1, coluna2) {
   header.forEach((head, i) => {
     row.insertCell(i).outerHTML = "<th>" + head + "</th>";
   });
+}
+
+function medianaquali(col0, col2) {
+  let lastpos = col2[col2.length - 1];
+  if (lastpos % 2 == 1) {
+    var pos1 = lastpos / 2;
+    pos1 = Math.round(pos1);
+    var pos2 = pos1;
+  } else {
+    var pos1 = lastpos / 2;
+    var pos2 = pos1 + 1;
+  }
+  let med1;
+  let med2;
+  for (let i = 0; i <= col2.length - 1; i++) {
+    if (pos1 < col2[0]) {
+      med1 = col0[0];
+      i = col2.length - 1;
+    }
+    if (pos2 < col2[0]) {
+      med2 = col0[0];
+      i = col2.length - 1;
+    }
+    if (pos1 < col2[i] && pos1 > col2[i - 1]) {
+      med1 = col0[i];
+    }
+    if (pos2 < col2[i] && pos2 > col2[i - 1]) {
+      med2 = col0[i];
+    }
+  }
+  if (med1 == med2) {
+    return med1;
+  } else {
+    return med1 + " e " + med2;
+  }
 }
