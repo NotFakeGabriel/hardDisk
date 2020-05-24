@@ -1,7 +1,14 @@
-import { media, moda, porcentagem, mult, medianaquant } from "./calcs.js";
-import { coluna, table } from "./tables.js";
+import {
+  media,
+  moda,
+  porcentagem,
+  mult,
+  medianaquant,
+  medianaquali,
+} from "./calcs.js";
+import { coluna, table, col1, linha } from "./tables.js";
 import { convertNumber } from "./conversor.js";
-function criarTabela() {
+function quantitativaCont() {
   const resul = document.getElementById("resultados");
   resul.innerHTML = "";
   document.getElementById("table").innerHTML = "";
@@ -99,4 +106,25 @@ function xi(val) {
   return vet;
 }
 
-export { criarTabela };
+function quantitativaDisc() {
+  const resul = document.getElementById("resultados");
+  resul.innerHTML = "";
+  document.getElementById("table").innerHTML = "";
+  const dados1 = document.getElementById("dados").value;
+  let vet = dados1.split(" ");
+  let vetN = convertNumber(vet);
+  let rol = vetN.sort((a, b) => a - b);
+  let coluna0 = linha(rol);
+  let coluna1 = col1(coluna0, rol);
+  let coluna2 = coluna(coluna1);
+  let mediaV = media(coluna0, coluna1);
+  let modaV = moda(coluna1, coluna0);
+  let medianaV = medianaquali(coluna0, coluna2);
+  const header = ["xi", "fi", "fac"];
+  const id = document.getElementById("table");
+  table(header, id, coluna0, coluna1, coluna2);
+
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
+}
+
+export { quantitativaCont, quantitativaDisc };

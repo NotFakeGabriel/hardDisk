@@ -26,4 +26,27 @@ function table(header, idtab, ...colunas) {
   });
 }
 
-export { coluna, table };
+function linha(vetor) {
+  let novo = [];
+  vetor.forEach((vet, i) => {
+    if (novo.indexOf(vet) == -1) {
+      novo.push(vet);
+    }
+  });
+  return novo;
+}
+function col1(col0, rol) {
+  let vet = [];
+  let sum = 0;
+  for (let i = 0; i < col0.length; i++) {
+    sum = 0;
+    for (let j = 0; j < rol.length; j++) {
+      if (col0[i] == rol[j]) {
+        sum++;
+      }
+    }
+    vet.push(sum);
+  }
+  return vet;
+}
+export { coluna, table, col1, linha };
