@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estatistica</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
   </head>
   <body>
     <h4>Qualitativa</h4>
@@ -49,6 +50,18 @@
     <div>
       <table id="table"></table>
       <div id="resultados"></div>
+    </div>
+
+    <div>
+      <input id="upload" type="file" name="files[]" />
+    </div>
+    <div id="planilha">
+      <table id="tableNom"></table>
+      <div id="nominal"></div>
+      <table id="tableDisc"></table>
+      <div id="discreta"></div>
+      <table id="tableCon"></table>
+      <div id="continua"></div>
     </div>
     <script src="index.js" type="module"></script>
   </body>

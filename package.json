@@ -10,5 +10,9 @@
     "express": "^4.17.1",
     "gh-pages": "^2.2.0",
     "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "read-excel-file": "^4.0.6"
   }
 }

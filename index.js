@@ -1,5 +1,5 @@
 import { qualitativaNom } from "./modules/qualitativa.js";
-
+import { excel } from "./modules/excel.js";
 import { quantitativaCont, quantitativaDisc } from "./modules/quantitativa.js";
 
 const btn = document.getElementById("btn");
@@ -33,3 +33,25 @@ btn2.addEventListener("click", function criarTabela() {
     quantitativaCont();
   }
 });
+var input = document.getElementById("upload");
+input.addEventListener(
+  "change",
+
+  function () {
+    /*
+  readXlsxFile(input.files[0]).then(function (test) {
+    console.log(test);
+  });
+*/
+    readXlsxFile(input.files[0], { getSheets: true }).then((sheets) => {
+      console.log(sheets);
+      sheets.forEach((sheet, i) => {
+        let name = sheets[i].name;
+        readXlsxFile(input.files[0], { sheet: name }).then((data) => {
+          let obj = { name: name, data: data };
+          excel(obj);
+        });
+      });
+    });
+  }
+);

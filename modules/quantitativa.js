@@ -8,6 +8,7 @@ import {
 } from "./calcs.js";
 import { coluna, table, col1, linha } from "./tables.js";
 import { convertNumber } from "./conversor.js";
+
 function quantitativaCont() {
   const resul = document.getElementById("resultados");
   resul.innerHTML = "";
@@ -127,4 +128,69 @@ function quantitativaDisc() {
   resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
 }
 
-export { quantitativaCont, quantitativaDisc };
+function quantitativaContXlsx(dados) {
+  const resul = document.getElementById("continua");
+  resul.innerHTML = "";
+  document.getElementById("tableCon").innerHTML = "";
+
+  let vet = dados.slice(1, dados.length);
+  let vetN = convertNumber(vet);
+  let maior = Math.max.apply(null, vetN);
+  let menor = Math.min.apply(null, vetN);
+  let at = maior - menor + 1;
+  let k = Math.sqrt(vetN.length);
+  k = Math.trunc(k);
+  let infos = infoTab(at, k);
+  const linhas = linhasTab(vetN, infos[1], infos[0]);
+  const valores = valoresTab(vetN, linhas);
+  const linhaTxt = textosColuna1(linhas);
+  const coluna4 = coluna(valores);
+  const xiv = xi(linhas);
+  const mediav = media(xiv, valores);
+  const modav = moda(valores, xiv);
+  const medianav = medianaquant(
+    linhaTxt,
+    valores,
+    vetN.length,
+    coluna4,
+    xiv,
+    linhas
+  );
+  const header = [`${dados[0]}`, "Fi", "xi", "xi.fi", "FR %", "Fac", "Fac %"];
+  const id = document.getElementById("tableCon");
+  const col4 = porcentagem(valores, vetN.length);
+  const col6 = porcentagem(coluna4, vetN.length);
+  const col3 = mult(xiv, valores);
+  table(header, id, linhaTxt, valores, xiv, col3, col4, coluna4, col6);
+
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav}`;
+}
+
+function quantitativaDiscXlsx(dados) {
+  const resul = document.getElementById("discreta");
+  resul.innerHTML += `<div id="tabela2"></div>`;
+
+  document.getElementById("tableDisc").innerHTML = "";
+
+  let vet = dados.slice(1, dados.length);
+  let vetN = convertNumber(vet);
+  let rol = vetN.sort((a, b) => a - b);
+  let coluna0 = linha(rol);
+  let coluna1 = col1(coluna0, rol);
+  let coluna2 = coluna(coluna1);
+  let mediaV = media(coluna0, coluna1);
+  let modaV = moda(coluna1, coluna0);
+  let medianaV = medianaquali(coluna0, coluna2);
+  const header = [`${dados[0]} (xi)`, "fi", "fac"];
+  const id = document.getElementById("tableDisc");
+  table(header, id, coluna0, coluna1, coluna2);
+
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
+}
+
+export {
+  quantitativaCont,
+  quantitativaDisc,
+  quantitativaContXlsx,
+  quantitativaDiscXlsx,
+};
