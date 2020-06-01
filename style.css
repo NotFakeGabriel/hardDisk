@@ -2,5 +2,12 @@ th,
 td {
   border: 1px solid black;
 }
-.hide{
+.hide {
   display: none;
+}
+.x_content {
+  width: 500px;
+  margin: 0 auto;
+  height: 300px;
+  padding: 10px;
+}

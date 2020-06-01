@@ -6,6 +6,10 @@
     <title>Estatistica</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <style
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css"
+    ></style>
   </head>
   <body>
     <h4>Qualitativa</h4>
@@ -30,6 +34,7 @@
     <div>
       <table id="table1"></table>
       <div id="resultados1"></div>
+      <div class="x_content"><canvas class="pie"></canvas></div>
     </div>
     <h4>Quantitativa</h4>
     Entre com os dados separados por espaço:
@@ -50,6 +55,7 @@
     <div>
       <table id="table"></table>
       <div id="resultados"></div>
+      <div class="x_content"><canvas class="bar"></canvas></div>
     </div>
 
     <div>
@@ -58,10 +64,13 @@
     <div id="planilha">
       <table id="tableNom"></table>
       <div id="nominal"></div>
+      <div class="x_content"><canvas class="pieXlsx"></canvas></div>
       <table id="tableDisc"></table>
       <div id="discreta"></div>
+      <div class="x_content"><canvas class="barDiscXlsx"></canvas></div>
       <table id="tableCon"></table>
       <div id="continua"></div>
+      <div class="x_content"><canvas class="barXlsx"></canvas></div>
     </div>
     <script src="index.js" type="module"></script>
   </body>

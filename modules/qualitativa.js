@@ -1,6 +1,7 @@
 //Qualitativa!!!!!!!!!!!!!!!!!
 import { coluna, table, col1, linha } from "./tables.js";
 import { moda, medianaquali } from "./calcs.js";
+import { pie } from "./charts.js";
 
 function qualitativaNom(ordem) {
   const resul = document.getElementById("resultados1");
@@ -30,6 +31,8 @@ function qualitativaNom(ordem) {
   table(header, id, coluna0, coluna1, coluna2);
 
   resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV}`;
+  const ctx = document.getElementsByClassName("pie");
+  pie(ctx, coluna1, coluna0);
 }
 
 function qualitativaXls(dados) {
@@ -53,6 +56,9 @@ function qualitativaXls(dados) {
   table(header, id, coluna0, coluna1, coluna2);
 
   resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV}`;
+  const ctx = document.getElementsByClassName("pieXlsx");
+
+  pie(ctx, coluna1, coluna0);
 }
 
 export { qualitativaNom, qualitativaXls };

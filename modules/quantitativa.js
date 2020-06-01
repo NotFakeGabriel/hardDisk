@@ -8,6 +8,7 @@ import {
 } from "./calcs.js";
 import { coluna, table, col1, linha } from "./tables.js";
 import { convertNumber } from "./conversor.js";
+import { bar } from "./charts.js";
 
 function quantitativaCont() {
   const resul = document.getElementById("resultados");
@@ -45,6 +46,8 @@ function quantitativaCont() {
   table(header, id, linhaTxt, valores, xiv, col3, col4, coluna4, col6);
 
   resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav}`;
+  const ctx = document.getElementsByClassName("bar");
+  bar(ctx, valores, linhaTxt, true);
 }
 
 function textosColuna1(valores) {
@@ -126,6 +129,8 @@ function quantitativaDisc() {
   table(header, id, coluna0, coluna1, coluna2);
 
   resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
+  const ctx = document.getElementsByClassName("bar");
+  bar(ctx, coluna1, coluna0);
 }
 
 function quantitativaContXlsx(dados) {
@@ -164,6 +169,8 @@ function quantitativaContXlsx(dados) {
   table(header, id, linhaTxt, valores, xiv, col3, col4, coluna4, col6);
 
   resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav}`;
+  const ctx = document.getElementsByClassName("barXlsx");
+  bar(ctx, valores, linhaTxt, true);
 }
 
 function quantitativaDiscXlsx(dados) {
@@ -186,6 +193,8 @@ function quantitativaDiscXlsx(dados) {
   table(header, id, coluna0, coluna1, coluna2);
 
   resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
+  const ctx = document.getElementsByClassName("barDiscXlsx");
+  bar(ctx, coluna1, coluna0);
 }
 
 export {
