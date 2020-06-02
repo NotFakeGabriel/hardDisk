@@ -49,4 +49,5 @@ function col1(col0, rol) {
   }
   return vet;
 }
+
 export { coluna, table, col1, linha };

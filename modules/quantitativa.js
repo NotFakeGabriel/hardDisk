@@ -4,6 +4,7 @@ import {
   porcentagem,
   mult,
   medianaquant,
+  separatriz,
   medianaquali,
 } from "./calcs.js";
 import { coluna, table, col1, linha } from "./tables.js";
@@ -45,7 +46,11 @@ function quantitativaCont() {
   const col3 = mult(xiv, valores);
   table(header, id, linhaTxt, valores, xiv, col3, col4, coluna4, col6);
 
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav}`;
+  const medida = document.getElementById("separatrizQuant").value;
+  const num = document.getElementById("numQuant").value;
+  let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
+
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav} ${separa}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, valores, linhaTxt, true);
 }
@@ -128,7 +133,11 @@ function quantitativaDisc() {
   const id = document.getElementById("table");
   table(header, id, coluna0, coluna1, coluna2);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
+  const medida = document.getElementById("separatrizQuant").value;
+  const num = document.getElementById("numQuant").value;
+  let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
+
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, coluna1, coluna0);
 }

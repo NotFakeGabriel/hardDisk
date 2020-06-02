@@ -55,3 +55,51 @@ input.addEventListener(
     });
   }
 );
+const separa = document.getElementById("separatrizQuali");
+const num = document.getElementById("numQuali");
+separa.addEventListener("change", function () {
+  let medida = separa.value;
+
+  switch (medida) {
+    case "Quartil":
+      num.max = 4;
+      num.value = 1;
+      break;
+    case "Quintil":
+      num.max = 5;
+      num.value = 1;
+      break;
+    case "Decil":
+      num.max = 10;
+      num.value = 1;
+      break;
+    case "Percentil":
+      num.max = 100;
+      num.value = 1;
+      break;
+  }
+});
+const separaQuant = document.getElementById("separatrizQuant");
+const numquant = document.getElementById("numQuant");
+separaQuant.addEventListener("change", function () {
+  let medida = separaQuant.value;
+
+  switch (medida) {
+    case "Quartil":
+      numquant.max = 4;
+      numquant.value = 1;
+      break;
+    case "Quintil":
+      numquant.max = 5;
+      numquant.value = 1;
+      break;
+    case "Decil":
+      numquant.max = 10;
+      numquant.value = 1;
+      break;
+    case "Percentil":
+      numquant.max = 100;
+      numquant.value = 1;
+      break;
+  }
+});

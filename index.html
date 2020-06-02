@@ -30,6 +30,13 @@
     <div id="ordinal" class="hide">
       Ordem das variaveis <input type="text" id="ordem" />
     </div>
+    <select name="" id="separatrizQuali">
+      <option value="Quartil">Quartil</option>
+      <option value="Quintil">Quintil</option>
+      <option value="Decil">Decil</option>
+      <option value="Percentil">Percentil</option>
+    </select>
+    <input type="number" name="" id="numQuali" min="1" max="4" />
     <button id="btn">Gerar tabela</button>
     <div>
       <table id="table1"></table>
@@ -51,6 +58,13 @@
       name="Quantitativa"
       value="cont"
     />Continua
+    <select name="" id="separatrizQuant">
+      <option value="Quartil">Quartil</option>
+      <option value="Quintil">Quintil</option>
+      <option value="Decil">Decil</option>
+      <option value="Percentil">Percentil</option>
+    </select>
+    <input type="number" name="" id="numQuant" min="1" max="4" />
     <button id="btn2">Gerar tabela</button>
     <div>
       <table id="table"></table>

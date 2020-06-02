@@ -102,4 +102,46 @@ function medianaquant(coluna1, coluna2, total, coluna4, xiv, linhas) {
   let mediana = (li + ((total / 2 - fant) / fimd) * h).toFixed(2);
   return mediana;
 }
-export { media, moda, medianaquali, porcentagem, mult, medianaquant };
+
+function separatriz(col1, col2, fac, medida, num, teste = false) {
+  let num1;
+  switch (medida) {
+    case "Quartil":
+      num1 = (num * 25) / 100;
+      break;
+    case "Quintil":
+      num1 = (num * 20) / 100;
+      break;
+    case "Decil":
+      num1 = (num * 10) / 100;
+      break;
+    case "Percentil":
+      num1 = num / 100;
+      break;
+  }
+  let somar = 0;
+  col2.forEach((x) => (somar += x));
+  let separatriz;
+  let final;
+  if (teste) {
+  } else {
+    separatriz = somar / num1;
+    fac.forEach((x, i) => {
+      if (separatriz < x + 1) {
+      } else {
+        final = col1[i];
+      }
+    });
+  }
+  final = `${medida} ${num}= ${final}`;
+  return final;
+}
+export {
+  media,
+  moda,
+  medianaquali,
+  porcentagem,
+  mult,
+  medianaquant,
+  separatriz,
+};
