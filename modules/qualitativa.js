@@ -1,6 +1,6 @@
 //Qualitativa!!!!!!!!!!!!!!!!!
 import { coluna, table, col1, linha } from "./tables.js";
-import { moda, medianaquali, separatriz } from "./calcs.js";
+import { moda, mediana, separatriz, porcentagem } from "./calcs.js";
 import { pie } from "./charts.js";
 
 function qualitativaNom(ordem) {
@@ -24,15 +24,17 @@ function qualitativaNom(ordem) {
 
   let coluna1 = col1(coluna0, vet);
   let coluna2 = coluna(coluna1);
+  let frPorcen = porcentagem(coluna1, vet.length);
+  let facPorcen = porcentagem(coluna2, vet.length);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = medianaquali(coluna0, coluna2);
-  const header = ["xi", "fi", "fac"];
+  let medianaV = mediana(coluna0, coluna2, vet.length);
+  const header = ["xi", "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("table1");
   const medida = document.getElementById("separatrizQuali").value;
   const num = document.getElementById("numQuali").value;
 
   let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
-  table(header, id, coluna0, coluna1, coluna2);
+  table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
   resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
   const ctx = document.getElementsByClassName("pie");
@@ -53,13 +55,15 @@ function qualitativaXls(dados) {
 
   let coluna1 = col1(coluna0, vet);
   let coluna2 = coluna(coluna1);
+  let frPorcen = porcentagem(coluna1, vet.length);
+  let facPorcen = porcentagem(coluna2, vet.length);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = medianaquali(coluna0, coluna2);
-  const header = [`${dados[0]} (xi)`, "fi", "fac"];
+  let medianaV = mediana(coluna0, coluna2, vet.length);
+  const header = [`${dados[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("tableNom");
-  table(header, id, coluna0, coluna1, coluna2);
+  table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV}`;
+  resul.innerHTML += `Moda= ${modaV} / ${medianaV}`;
   const ctx = document.getElementsByClassName("pieXlsx");
 
   pie(ctx, coluna1, coluna0);

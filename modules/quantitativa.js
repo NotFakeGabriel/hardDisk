@@ -4,8 +4,8 @@ import {
   porcentagem,
   mult,
   medianaquant,
+  mediana,
   separatriz,
-  medianaquali,
 } from "./calcs.js";
 import { coluna, table, col1, linha } from "./tables.js";
 import { convertNumber } from "./conversor.js";
@@ -48,7 +48,7 @@ function quantitativaCont() {
 
   const medida = document.getElementById("separatrizQuant").value;
   const num = document.getElementById("numQuant").value;
-  let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
+  let separa = separatriz(linhaTxt, valores, coluna4, medida, num);
 
   resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav} ${separa}`;
   const ctx = document.getElementsByClassName("bar");
@@ -126,18 +126,21 @@ function quantitativaDisc() {
   let coluna0 = linha(rol);
   let coluna1 = col1(coluna0, rol);
   let coluna2 = coluna(coluna1);
+  let frPorcen = porcentagem(coluna1, vetN.length);
+  let facPorcen = porcentagem(coluna2, vetN.length);
   let mediaV = media(coluna0, coluna1);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = medianaquali(coluna0, coluna2);
-  const header = ["xi", "fi", "fac"];
+  let medianaV = mediana(coluna0, coluna2, vetN.length);
+  const header = ["xi", "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("table");
-  table(header, id, coluna0, coluna1, coluna2);
+
+  table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
   const medida = document.getElementById("separatrizQuant").value;
   const num = document.getElementById("numQuant").value;
   let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV} / ${separa}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, coluna1, coluna0);
 }
@@ -194,14 +197,16 @@ function quantitativaDiscXlsx(dados) {
   let coluna0 = linha(rol);
   let coluna1 = col1(coluna0, rol);
   let coluna2 = coluna(coluna1);
+  let frPorcen = porcentagem(coluna1, vetN.length);
+  let facPorcen = porcentagem(coluna2, vetN.length);
   let mediaV = media(coluna0, coluna1);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = medianaquali(coluna0, coluna2);
-  const header = [`${dados[0]} (xi)`, "fi", "fac"];
+  let medianaV = mediana(coluna0, coluna2, vetN.length);
+  const header = [`${dados[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("tableDisc");
-  table(header, id, coluna0, coluna1, coluna2);
+  table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana= ${medianaV}`;
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV}`;
   const ctx = document.getElementsByClassName("barDiscXlsx");
   bar(ctx, coluna1, coluna0);
 }

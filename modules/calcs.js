@@ -13,42 +13,51 @@ function media(xi, total) {
 }
 function moda(valores, xi) {
   let maior = Math.max.apply(null, valores);
-  let i = valores.indexOf(maior);
-  return xi[i];
+  let teste = [];
+  valores.filter((x, i) => {
+    if (x == maior) {
+      teste.push(xi[i]);
+    }
+  });
+  let retorno;
+  teste.forEach((txt) => {
+    if (retorno == undefined) {
+      retorno = `${txt}`;
+    } else {
+      retorno += `, ${txt}`;
+    }
+  });
+  return retorno;
 }
 
-function medianaquali(col0, col2) {
-  let lastpos = col2[col2.length - 1];
-  if (lastpos % 2 == 1) {
-    var pos1 = lastpos / 2;
-    pos1 = Math.round(pos1);
-    var pos2 = pos1;
+function mediana(col0, col2, tot) {
+  if (tot % 2 == 0) {
+    let med = [tot / 2, tot / 2 + 1];
+    let fac = [];
+    col2.forEach((x, i) => {
+      if (med[0] < x && med[0] > col2[i - 1]) {
+        fac.push(i);
+      }
+    });
+    col2.forEach((x, i) => {
+      if (med[1] < x && med[1] > col2[i - 1]) {
+        fac.push(i);
+      }
+    });
+    if (fac[0] == fac[1]) {
+      return `mediana = ${col0[fac[0]]}`;
+    } else {
+      return `mediana = ${col0[fac[0]]} e ${col0[fac[1]]}`;
+    }
   } else {
-    var pos1 = lastpos / 2;
-    var pos2 = pos1 + 1;
-  }
-  let med1;
-  let med2;
-  for (let i = 0; i <= col2.length - 1; i++) {
-    if (pos1 < col2[0]) {
-      med1 = col0[0];
-      i = col2.length - 1;
-    }
-    if (pos2 < col2[0]) {
-      med2 = col0[0];
-      i = col2.length - 1;
-    }
-    if (pos1 < col2[i] && pos1 > col2[i - 1]) {
-      med1 = col0[i];
-    }
-    if (pos2 < col2[i] && pos2 > col2[i - 1]) {
-      med2 = col0[i];
-    }
-  }
-  if (med1 == med2) {
-    return med1;
-  } else {
-    return med1 + " e " + med2;
+    let med = Math.trunc(tot / 2);
+    let fac;
+    col2.forEach((x, i) => {
+      if (med <= x && med > col2[i - 1]) {
+        fac = i;
+      }
+    });
+    return `mediana = ${col0[fac]}`;
   }
 }
 
@@ -136,12 +145,4 @@ function separatriz(col1, col2, fac, medida, num, teste = false) {
   final = `${medida} ${num}= ${final}`;
   return final;
 }
-export {
-  media,
-  moda,
-  medianaquali,
-  porcentagem,
-  mult,
-  medianaquant,
-  separatriz,
-};
+export { media, moda, mediana, porcentagem, mult, medianaquant, separatriz };

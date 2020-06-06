@@ -31,7 +31,6 @@ function pie(ctx, dados, labels) {
       },
     },
   });
-  console.log(data);
 }
 function bar(ctx, dados, labels, teste) {
   let data = {
