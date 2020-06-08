@@ -61,6 +61,41 @@ function mediana(col0, col2, tot) {
   }
 }
 
+function separasTestes(col0, col2, tot, medida, num) {
+  let num1;
+  switch (medida) {
+    case "Quartil":
+      num1 = (num * 25) / 100;
+      break;
+    case "Quintil":
+      num1 = (num * 20) / 100;
+      break;
+    case "Decil":
+      num1 = (num * 10) / 100;
+      break;
+    case "Percentil":
+      num1 = num / 100;
+      break;
+  }
+
+  let med = Math.trunc(tot * num1);
+  console.log(med);
+  let fac;
+  col2.forEach((x, i) => {
+    if (i == 0) {
+      if (med <= x) {
+        fac = i;
+      }
+    } else {
+      if (med <= x && med > col2[i - 1]) {
+        fac = i;
+      }
+    }
+  });
+
+  return `${medida} ${num}= ${col0[fac]}`;
+}
+
 function porcentagem(vet, tot) {
   let novo = [];
   vet.forEach((valor) => {
@@ -76,40 +111,56 @@ function mult(a, b) {
   });
   return novo;
 }
-
-function medianaquant(coluna1, coluna2, total, coluna4, xiv, linhas) {
-  let pos = Math.round(total / 2);
-  let fant;
-  let li;
-  let fimd;
-  let indice;
-  for (let i = 1; i <= coluna4.length - 1; i++) {
-    if (pos < coluna4[1]) {
-      fant = coluna4[0];
-      i = coluna4.length - 1;
+function medianaCont(col0, col2, tot, h, fi) {
+  if (tot % 2 == 0) {
+    let med = [tot / 2, tot / 2 + 1];
+    let fac = [];
+    col2.forEach((x, i) => {
+      if (med[0] < x && med[0] > col2[i - 1]) {
+        fac.push(i);
+      }
+    });
+    col2.forEach((x, i) => {
+      if (med[1] < x && med[1] > col2[i - 1]) {
+        fac.push(i);
+      }
+    });
+    if (fac[0] == fac[1]) {
+      let l = col0[fac[0]].split("|", 2);
+      l = Number(l[0]);
+      let fant = col2[fac[0] - 1];
+      let find = fi[fac[0]];
+      let md = l + ((tot / 2 - fant) / find) * h;
+      return `mediana = ${md}`;
+    } else {
+      let l = col0[fac[0]].split("|", 2);
+      l = Number(l[0]);
+      let fant = col2[fac[0] - 1];
+      let find = fi[fac[0]];
+      let md = [l + ((tot / 2 - fant) / find) * h];
+      //segunda mediana
+      l = col0[fac[1]].split("|", 2);
+      l = Number(l[0]);
+      fant = col2[fac[1] - 1];
+      find = fi[fac[1]];
+      md.push(l + ((tot / 2 - fant) / find) * h);
+      return `mediana = ${md[0]} e ${md[1]}`;
     }
-    if (pos < coluna4[i] && pos > coluna4[i - 1]) {
-      fant = coluna4[i - 1];
-    } else if (pos == coluna4[i - 1]) {
-      fant = coluna4[i - 1];
-    }
+  } else {
+    let med = Math.trunc(tot / 2);
+    let fac;
+    col2.forEach((x, i) => {
+      if (med <= x && med > col2[i - 1]) {
+        fac = i;
+      }
+    });
+    let l = col0[fac].split("|", 2);
+    l = Number(l[0]);
+    let fant = col2[fac - 1];
+    let find = fi[fac];
+    let md = l + ((tot / 2 - fant) / find) * h;
+    return `mediana = ${md}`;
   }
-  for (var j = 0; j <= coluna4.length - 1; j++) {
-    if (pos < coluna4[0]) {
-      indice = 0;
-      j = coluna4.length - 1;
-    }
-    if (pos < coluna4[j] && pos > coluna4[j - 1]) {
-      indice = j;
-    } else if (pos == coluna4[j - 1]) {
-      indice = j;
-    }
-  }
-  li = linhas[indice];
-  fimd = coluna2[indice];
-  let h = linhas[1] - linhas[0];
-  let mediana = (li + ((total / 2 - fant) / fimd) * h).toFixed(2);
-  return mediana;
 }
 
 function separatriz(col1, col2, fac, medida, num, teste = false) {
@@ -145,4 +196,13 @@ function separatriz(col1, col2, fac, medida, num, teste = false) {
   final = `${medida} ${num}= ${final}`;
   return final;
 }
-export { media, moda, mediana, porcentagem, mult, medianaquant, separatriz };
+export {
+  media,
+  moda,
+  mediana,
+  porcentagem,
+  mult,
+  medianaCont,
+  separatriz,
+  separasTestes,
+};

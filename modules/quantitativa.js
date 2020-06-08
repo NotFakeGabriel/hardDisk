@@ -3,9 +3,10 @@ import {
   moda,
   porcentagem,
   mult,
-  medianaquant,
+  medianaCont,
   mediana,
   separatriz,
+  separasTestes,
 } from "./calcs.js";
 import { coluna, table, col1, linha } from "./tables.js";
 import { convertNumber } from "./conversor.js";
@@ -31,13 +32,12 @@ function quantitativaCont() {
   const xiv = xi(linhas);
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
-  const medianav = medianaquant(
+  const medianav = medianaCont(
     linhaTxt,
-    valores,
-    vetN.length,
     coluna4,
-    xiv,
-    linhas
+    vetN.length,
+    infos[1],
+    valores
   );
   const header = ["Variavel", "Fi", "xi", "xi.fi", "FR %", "Fac", "Fac %"];
   const id = document.getElementById("table");
@@ -50,7 +50,7 @@ function quantitativaCont() {
   const num = document.getElementById("numQuant").value;
   let separa = separatriz(linhaTxt, valores, coluna4, medida, num);
 
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav} ${separa}`;
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / ${medianav} / ${separa}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, valores, linhaTxt, true);
 }
@@ -138,7 +138,7 @@ function quantitativaDisc() {
 
   const medida = document.getElementById("separatrizQuant").value;
   const num = document.getElementById("numQuant").value;
-  let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
+  let separa = separasTestes(coluna0, coluna2, vetN.length, medida, num);
 
   resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV} / ${separa}`;
   const ctx = document.getElementsByClassName("bar");
@@ -165,13 +165,12 @@ function quantitativaContXlsx(dados) {
   const xiv = xi(linhas);
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
-  const medianav = medianaquant(
+  const medianav = medianaCont(
     linhaTxt,
-    valores,
-    vetN.length,
     coluna4,
-    xiv,
-    linhas
+    vetN.length,
+    infos[1],
+    valores
   );
   const header = [`${dados[0]}`, "Fi", "xi", "xi.fi", "FR %", "Fac", "Fac %"];
   const id = document.getElementById("tableCon");
@@ -180,7 +179,7 @@ function quantitativaContXlsx(dados) {
   const col3 = mult(xiv, valores);
   table(header, id, linhaTxt, valores, xiv, col3, col4, coluna4, col6);
 
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana= ${medianav}`;
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / ${medianav}`;
   const ctx = document.getElementsByClassName("barXlsx");
   bar(ctx, valores, linhaTxt, true);
 }

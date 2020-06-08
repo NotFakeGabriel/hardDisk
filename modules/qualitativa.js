@@ -1,6 +1,12 @@
 //Qualitativa!!!!!!!!!!!!!!!!!
 import { coluna, table, col1, linha } from "./tables.js";
-import { moda, mediana, separatriz, porcentagem } from "./calcs.js";
+import {
+  moda,
+  mediana,
+  separatriz,
+  porcentagem,
+  separasTestes,
+} from "./calcs.js";
 import { pie } from "./charts.js";
 
 function qualitativaNom(ordem) {
@@ -33,7 +39,7 @@ function qualitativaNom(ordem) {
   const medida = document.getElementById("separatrizQuali").value;
   const num = document.getElementById("numQuali").value;
 
-  let separa = separatriz(coluna0, coluna1, coluna2, medida, num);
+  let separa = separasTestes(coluna0, coluna2, vet.length, medida, num);
   table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
   resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
