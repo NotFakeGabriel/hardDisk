@@ -79,7 +79,7 @@ function separasTestes(col0, col2, tot, medida, num) {
   }
 
   let med = Math.trunc(tot * num1);
-  console.log(med);
+
   let fac;
   col2.forEach((x, i) => {
     if (i == 0) {
@@ -116,22 +116,24 @@ function medianaCont(col0, col2, tot, h, fi) {
     let med = [tot / 2, tot / 2 + 1];
     let fac = [];
     col2.forEach((x, i) => {
-      if (med[0] < x && med[0] > col2[i - 1]) {
+      if (med[0] <= x && med[0] > col2[i - 1]) {
         fac.push(i);
       }
     });
+
     col2.forEach((x, i) => {
-      if (med[1] < x && med[1] > col2[i - 1]) {
+      if (med[1] <= x && med[1] > col2[i - 1]) {
         fac.push(i);
       }
     });
+
     if (fac[0] == fac[1]) {
       let l = col0[fac[0]].split("|", 2);
       l = Number(l[0]);
       let fant = col2[fac[0] - 1];
       let find = fi[fac[0]];
       let md = l + ((tot / 2 - fant) / find) * h;
-      return `mediana = ${md}`;
+      return `mediana = ${md.toFixed(2)}`;
     } else {
       let l = col0[fac[0]].split("|", 2);
       l = Number(l[0]);
@@ -139,12 +141,13 @@ function medianaCont(col0, col2, tot, h, fi) {
       let find = fi[fac[0]];
       let md = [l + ((tot / 2 - fant) / find) * h];
       //segunda mediana
+
       l = col0[fac[1]].split("|", 2);
       l = Number(l[0]);
       fant = col2[fac[1] - 1];
       find = fi[fac[1]];
       md.push(l + ((tot / 2 - fant) / find) * h);
-      return `mediana = ${md[0]} e ${md[1]}`;
+      return `mediana = ${md[0].toFixed(2)} e ${md[1].toFixed(2)}`;
     }
   } else {
     let med = Math.trunc(tot / 2);
@@ -159,7 +162,7 @@ function medianaCont(col0, col2, tot, h, fi) {
     let fant = col2[fac - 1];
     let find = fi[fac];
     let md = l + ((tot / 2 - fant) / find) * h;
-    return `mediana = ${md}`;
+    return `mediana = ${md.toFixed(2)}`;
   }
 }
 
