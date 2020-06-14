@@ -1,6 +1,8 @@
 import { qualitativaNom } from "./modules/qualitativa.js";
 import { excel } from "./modules/excel.js";
 import { quantitativaCont, quantitativaDisc } from "./modules/quantitativa.js";
+import { binomial } from "./modules/binomial.js";
+import { probNormal } from "./modules/normal.js";
 
 const btn = document.getElementById("btn");
 btn.addEventListener("click", function criarTabela2() {
@@ -34,27 +36,22 @@ btn2.addEventListener("click", function criarTabela() {
   }
 });
 var input = document.getElementById("upload");
-input.addEventListener(
-  "change",
-
-  function () {
-    /*
+input.addEventListener("change", function () {
+  /*
   readXlsxFile(input.files[0]).then(function (test) {
     console.log(test);
   });
 */
-    readXlsxFile(input.files[0], { getSheets: true }).then((sheets) => {
-      console.log(sheets);
-      sheets.forEach((sheet, i) => {
-        let name = sheets[i].name;
-        readXlsxFile(input.files[0], { sheet: name }).then((data) => {
-          let obj = { name: name, data: data };
-          excel(obj);
-        });
+  readXlsxFile(input.files[0], { getSheets: true }).then((sheets) => {
+    sheets.forEach((sheet, i) => {
+      let name = sheets[i].name;
+      readXlsxFile(input.files[0], { sheet: name }).then((data) => {
+        let obj = { name: name, data: data };
+        excel(obj);
       });
     });
-  }
-);
+  });
+});
 const separa = document.getElementById("separatrizQuali");
 const num = document.getElementById("numQuali");
 separa.addEventListener("change", function () {
@@ -101,5 +98,36 @@ separaQuant.addEventListener("change", function () {
       numquant.max = 100;
       numquant.value = 1;
       break;
+  }
+});
+
+const binomialBtn = document.getElementById("binomialBtn");
+binomialBtn.addEventListener("click", binomial);
+
+const normalBtn = document.getElementById("normalBtn");
+normalBtn.addEventListener("click", probNormal);
+
+const normalSelect = document.getElementById("normalSelect");
+normalSelect.addEventListener("change", function () {
+  if (normalSelect.value == "entre") {
+    let de = document.getElementById("de");
+    de.classList.remove("hide");
+    de.value = "";
+    let ate = document.getElementById("ate");
+    ate.classList.remove("hide");
+    ate.value = "";
+    let quant = document.getElementById("quantidade");
+    quant.classList.add("hide");
+    quant.value = "";
+  } else {
+    let de = document.getElementById("de");
+    de.classList.add("hide");
+    de.value = "";
+    let ate = document.getElementById("ate");
+    ate.classList.add("hide");
+    ate.value = "";
+    let quant = document.getElementById("quantidade");
+    quant.classList.remove("hide");
+    quant.value = "";
   }
 });

@@ -5,7 +5,7 @@ import {
   mult,
   medianaCont,
   mediana,
-  separatriz,
+  variancia,
   separasTestes,
 } from "./calcs.js";
 import { coluna, table, col1, linha } from "./tables.js";
@@ -48,9 +48,22 @@ function quantitativaCont() {
 
   const medida = document.getElementById("separatrizQuant").value;
   const num = document.getElementById("numQuant").value;
-  let separa = separatriz(linhaTxt, valores, coluna4, medida, num);
-
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / ${medianav} / ${separa}`;
+  let separa = separasTestes(
+    linhaTxt,
+    coluna4,
+    vetN.length,
+    medida,
+    num,
+    true,
+    infos[1],
+    valores
+  );
+  let tipo = document.getElementsByName("tipoQuanti");
+  tipo = tipo[0].checked ? "amostra" : "populacao";
+  let vari = variancia(xiv, valores, vetN.length, mediav, tipo);
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / ${medianav} / 
+  ${separa} / 
+  DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, valores, linhaTxt, true);
 }
@@ -140,7 +153,13 @@ function quantitativaDisc() {
   const num = document.getElementById("numQuant").value;
   let separa = separasTestes(coluna0, coluna2, vetN.length, medida, num);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV} / ${separa}`;
+  let tipo = document.getElementsByName("tipoQuanti");
+  tipo = tipo[0].checked ? "amostra" : "populacao";
+  let vari = variancia(coluna0, coluna1, vetN.length, mediaV, tipo);
+
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV} / 
+  ${separa} / 
+  DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, coluna1, coluna0);
 }

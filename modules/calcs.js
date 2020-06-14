@@ -61,7 +61,16 @@ function mediana(col0, col2, tot) {
   }
 }
 
-function separasTestes(col0, col2, tot, medida, num) {
+function separasTestes(
+  col0,
+  col2,
+  tot,
+  medida,
+  num,
+  cont = false,
+  h = 0,
+  fi = 0
+) {
   let num1;
   switch (medida) {
     case "Quartil":
@@ -92,8 +101,19 @@ function separasTestes(col0, col2, tot, medida, num) {
       }
     }
   });
-
-  return `${medida} ${num}= ${col0[fac]}`;
+  if (cont) {
+    let l = col0[fac].split("|", 2);
+    l = Number(l[0]);
+    let fant = fac == 0 ? 0 : col2[fac - 1];
+    let find = fi[fac];
+    let md = l + ((med - fant) / find) * h;
+    return `${medida} ${num}= ${md.toFixed(2)}`;
+  } else {
+    console.log(col2, fac, med);
+    return `${medida} ${num}= ${
+      isNaN(col0[fac]) ? col0[fac] : col0[fac].toFixed(2)
+    }`;
+  }
 }
 
 function porcentagem(vet, tot) {
@@ -130,21 +150,21 @@ function medianaCont(col0, col2, tot, h, fi) {
     if (fac[0] == fac[1]) {
       let l = col0[fac[0]].split("|", 2);
       l = Number(l[0]);
-      let fant = col2[fac[0] - 1];
+      let fant = fac[0] == 0 ? 0 : col2[fac[0] - 1];
       let find = fi[fac[0]];
       let md = l + ((tot / 2 - fant) / find) * h;
       return `mediana = ${md.toFixed(2)}`;
     } else {
       let l = col0[fac[0]].split("|", 2);
       l = Number(l[0]);
-      let fant = col2[fac[0] - 1];
+      let fant = fac[0] == 0 ? 0 : col2[fac[0] - 1];
       let find = fi[fac[0]];
       let md = [l + ((tot / 2 - fant) / find) * h];
       //segunda mediana
 
       l = col0[fac[1]].split("|", 2);
       l = Number(l[0]);
-      fant = col2[fac[1] - 1];
+      fant = fac[1] == 0 ? 0 : col2[fac[1] - 1];
       find = fi[fac[1]];
       md.push(l + ((tot / 2 - fant) / find) * h);
       return `mediana = ${md[0].toFixed(2)} e ${md[1].toFixed(2)}`;
@@ -159,13 +179,13 @@ function medianaCont(col0, col2, tot, h, fi) {
     });
     let l = col0[fac].split("|", 2);
     l = Number(l[0]);
-    let fant = col2[fac - 1];
+    let fant = fac == 0 ? 0 : col2[fac - 1];
     let find = fi[fac];
     let md = l + ((tot / 2 - fant) / find) * h;
     return `mediana = ${md.toFixed(2)}`;
   }
 }
-
+/*
 function separatriz(col1, col2, fac, medida, num, teste = false) {
   let num1;
   switch (medida) {
@@ -198,7 +218,29 @@ function separatriz(col1, col2, fac, medida, num, teste = false) {
   }
   final = `${medida} ${num}= ${final}`;
   return final;
+}*/
+
+function variancia(xi, fi, total, media, tipo) {
+  let dp = 0;
+  xi.forEach((x, i) => {
+    dp += (x - media) ** 2 * fi[i];
+  });
+  if (tipo === "amostra") {
+    dp = Math.sqrt(dp / (total - 1)).toFixed(2);
+  } else {
+    dp = Math.sqrt(dp / total).toFixed(2);
+  }
+
+  let cv = (dp / media) * 100;
+
+  return [dp, cv.toFixed(0)];
 }
+function sFact(num) {
+  var rval = 1;
+  for (var i = 2; i <= num; i++) rval = rval * i;
+  return rval;
+}
+
 export {
   media,
   moda,
@@ -206,6 +248,7 @@ export {
   porcentagem,
   mult,
   medianaCont,
-  separatriz,
   separasTestes,
+  variancia,
+  sFact,
 };

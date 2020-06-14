@@ -1,0 +1,33 @@
+<div
+  id="probabilidade"
+  class="container my-4 border col-lg-6 col-md-12 col-sm-12 text-center"
+>
+  <h3>Probabilidade</h3>
+  <br />
+
+  <div id="binomial">
+    <h4>Binomial</h4>
+    <input type="text" name="" id="n" />Amostra(N)<br />
+    <input type="text" name="" id="p" />Sucesso (p) <br />
+    <input type="text" name="" id="q" />Fracasso (q) <br />
+    <input type="text" name="" id="k" />Evento (K) <br />
+    <button id="binomialBtn">Calcular</button>
+  </div>
+  <div id="resulBino"></div>
+</div>
+
+<div id="normal">
+  <h4>Normal</h4>
+  <select name="" id="normalSelect">
+    <option value="maior">Maior</option>
+    <option value="entre">Entre</option>
+    <option value="menor">Menor</option>
+  </select>
+  <input type="text" name="" id="media" />Média
+  <input type="text" name="" id="desvio" />Desvio Padrão
+  <input type="text" name="" id="quantidade" />quantidade
+  <input type="text" name="" id="de" class="hide" />De
+  <input type="text" name="" id="ate" class="hide" />Até
+  <button id="normalBtn">Calcular</button>
+</div>
+<script src="index.js" type="module"></script>

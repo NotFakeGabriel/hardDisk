@@ -1,12 +1,6 @@
 //Qualitativa!!!!!!!!!!!!!!!!!
 import { coluna, table, col1, linha } from "./tables.js";
-import {
-  moda,
-  mediana,
-  separatriz,
-  porcentagem,
-  separasTestes,
-} from "./calcs.js";
+import { moda, mediana, porcentagem, separasTestes } from "./calcs.js";
 import { pie } from "./charts.js";
 
 function qualitativaNom(ordem) {
