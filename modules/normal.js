@@ -5,6 +5,8 @@ function probNormal() {
   const desvio = document.getElementById("desvio").value;
   const select = document.getElementById("normalSelect").value;
   const quant = document.getElementById("quantidade").value;
+  const resul = document.getElementById("normalResul");
+  resul.innerHtml = "";
   let numZ;
   switch (select) {
     case "entre":
@@ -14,30 +16,30 @@ function probNormal() {
       let ateZ = numberZ(ate, media, desvio);
 
       if (de < media) {
-        console.log((deZ + ateZ) * 100);
+        resul.innerText = `Probabilidade = ${(deZ + ateZ) * 100}%`;
       } else if (de == media) {
-        console.log(ateZ * 100);
+        resul.innerText = `Probabilidade = ${ateZ * 100}%`;
       } else {
-        console.log((ateZ - deZ) * 100);
+        resul.innerText = `Probabilidade = ${(ateZ - deZ) * 100}%`;
       }
       break;
     case "maior":
       if (quant > media) {
         numZ = numberZ(quant, media, desvio);
-        console.log((0.5 - numZ) * 100);
+        resul.innerText = `Probabilidade = ${(0.5 - numZ) * 100}%`;
       } else {
         numZ = numberZ(quant, media, desvio);
-        console.log((0.5 + numZ) * 100);
+        resul.innerText = `Probabilidade = ${(0.5 + numZ) * 100}%`;
       }
 
       break;
     case "menor":
       if (quant < media) {
         numZ = numberZ(quant, media, desvio);
-        console.log((0.5 - numZ) * 100);
+        resul.innerText = `Probabilidade = ${(0.5 - numZ) * 100}%`;
       } else {
         numZ = numberZ(quant, media, desvio);
-        console.log((0.5 + numZ) * 100);
+        resul.innerText = `Probabilidade = ${(0.5 + numZ) * 100}%`;
       }
       break;
   }
@@ -52,7 +54,6 @@ function numberZ(quant, media, desvio) {
   let zNumber = [Number(z.substring(3, 0)), Number(z.substring(3))];
 
   let linhaN = linha.indexOf(zNumber[0]);
-  console.log(z, linhaN, zNumber[0]);
   return normal[linhaN][zNumber[1]];
 }
 export { probNormal };
