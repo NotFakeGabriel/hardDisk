@@ -60,10 +60,28 @@ function bar(ctx, dados, labels, teste) {
       data,
       options: {
         scales: {
+          /*
           xAxes: [
             {
               categoryPercentage: 1.0,
               barPercentage: 1.0,
+              display: true,
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+              },
+            },
+          ],
+*/
+          yAxes: [
+            {
+              display: true,
+              ticks: {
+                beginAtZero: true,
+
+                min: 0,
+              },
             },
           ],
         },
@@ -85,6 +103,30 @@ function bar(ctx, dados, labels, teste) {
         legend: {
           position: "left",
           fullWidth: false,
+        },
+        scales: {
+          /*
+          xAxes: [
+            {
+              display: true,
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+              },
+            },
+          ],
+          */
+          yAxes: [
+            {
+              display: true,
+              ticks: {
+                beginAtZero: true,
+
+                min: 0,
+              },
+            },
+          ],
         },
       },
     });
