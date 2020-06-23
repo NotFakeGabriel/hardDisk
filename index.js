@@ -3,6 +3,9 @@ import { excel } from "./modules/excel.js";
 import { quantitativaCont, quantitativaDisc } from "./modules/quantitativa.js";
 import { binomial } from "./modules/binomial.js";
 import { probNormal } from "./modules/normal.js";
+import { probUniforme } from "./modules/uniforme.js";
+import { correlacao } from "./modules/correlacao.js";
+//import * as quantitativa from "./modules/quantitativa.js";
 
 const btn = document.getElementById("btn");
 btn.addEventListener("click", function criarTabela2() {
@@ -131,3 +134,35 @@ normalSelect.addEventListener("change", function () {
     quant.value = "";
   }
 });
+
+const uniformeBtn = document.getElementById("uniformeBtn");
+uniformeBtn.addEventListener("click", probUniforme);
+
+const uniformeSelect = document.getElementById("uniformeSelect");
+const deUni = document.getElementById("deUniforme");
+const ateUni = document.getElementById("ateUniforme");
+const quantUni = document.getElementById("quantidadeUniforme");
+uniformeSelect.addEventListener("change", function () {
+  if (uniformeSelect.value == "entre") {
+    deUni.classList.remove("hide");
+    deUni.value = "";
+
+    ateUni.classList.remove("hide");
+    ateUni.value = "";
+
+    quantUni.classList.add("hide");
+    quantUni.value = "";
+  } else {
+    deUni.classList.add("hide");
+    deUni.value = "";
+
+    ateUni.classList.add("hide");
+    ateUni.value = "";
+
+    quantUni.classList.remove("hide");
+    quantUni.value = "";
+  }
+});
+
+const correBtn = document.getElementById("correBtn");
+correBtn.addEventListener("click", correlacao);

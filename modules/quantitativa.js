@@ -11,6 +11,7 @@ import {
 import { coluna, table, col1, linha } from "./tables.js";
 import { convertNumber } from "./conversor.js";
 import { bar } from "./charts.js";
+import { quickSort } from "./quick-sort.js";
 
 function quantitativaCont() {
   const resul = document.getElementById("resultados");
@@ -136,6 +137,8 @@ function quantitativaDisc() {
   let vet = dados1.split(" ");
   let vetN = convertNumber(vet);
   let rol = vetN.sort((a, b) => a - b);
+  //let rol = quickSort(vetN);
+
   let coluna0 = linha(rol);
   let coluna1 = col1(coluna0, rol);
   let coluna2 = coluna(coluna1);
