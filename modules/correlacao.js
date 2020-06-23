@@ -19,7 +19,6 @@ function correlacao() {
     Math.sqrt(n * somar(xQuad) - Math.pow(somar(xVet), 2)) *
     Math.sqrt(n * somar(yQuad) - Math.pow(somar(yVet), 2));
   let r = r1 / r2;
-  let a = 
 }
 function mult(a, b) {
   let vet = [];
