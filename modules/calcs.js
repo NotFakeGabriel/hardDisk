@@ -185,40 +185,6 @@ function medianaCont(col0, col2, tot, h, fi) {
     return `mediana = ${md.toFixed(2)}`;
   }
 }
-/*
-function separatriz(col1, col2, fac, medida, num, teste = false) {
-  let num1;
-  switch (medida) {
-    case "Quartil":
-      num1 = (num * 25) / 100;
-      break;
-    case "Quintil":
-      num1 = (num * 20) / 100;
-      break;
-    case "Decil":
-      num1 = (num * 10) / 100;
-      break;
-    case "Percentil":
-      num1 = num / 100;
-      break;
-  }
-  let somar = 0;
-  col2.forEach((x) => (somar += x));
-  let separatriz;
-  let final;
-  if (teste) {
-  } else {
-    separatriz = somar / num1;
-    fac.forEach((x, i) => {
-      if (separatriz < x + 1) {
-      } else {
-        final = col1[i];
-      }
-    });
-  }
-  final = `${medida} ${num}= ${final}`;
-  return final;
-}*/
 
 function variancia(xi, fi, total, media, tipo) {
   let dp = 0;
@@ -241,7 +207,23 @@ function sFact(num) {
   return rval;
 }
 
+function somar(vet) {
+  let soma = 0;
+  vet.forEach((x) => {
+    soma += x;
+  });
+  return soma;
+}
+
+function elev(vet) {
+  let quad = [];
+  vet.forEach((x) => quad.push(x * x));
+  return quad;
+}
+
 export {
+  somar,
+  elev,
   media,
   moda,
   mediana,

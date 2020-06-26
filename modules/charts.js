@@ -132,4 +132,65 @@ function bar(ctx, dados, labels, teste) {
     });
   }
 }
-export { pie, bar };
+
+function mixed(ctx, dados, reta) {
+  ctx.innerHTML = "";
+
+  var mixedChart = new Chart(ctx, {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: "Bar Dataset",
+          data: dados,
+          borderColor: "rgb(0, 0, 224)",
+          backgroundColor: "rgb(0, 0, 224)",
+        },
+        {
+          label: "Line Dataset",
+          data: [
+            { x: reta[0], y: reta[1] },
+            { x: reta[2], y: reta[3] },
+          ],
+          fill: false,
+          backgroundColor: "rgb(224, 0, 0)",
+          borderColor: "rgb(224, 0, 0)",
+          type: "line",
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Gráfico de dispersão com linha de regressão",
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [
+          {
+            display: true,
+            ticks: {
+              // beginAtZero: true,
+              // min: 0,
+              // max: 1200,
+            },
+          },
+        ],
+        xAxes: [
+          {
+            display: true,
+            ticks: {
+              // beginAtZero: true,
+              // min: 0,
+              // max: 1200,
+            },
+          },
+        ],
+      },
+    },
+  });
+}
+
+export { pie, bar, mixed };

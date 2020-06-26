@@ -8,7 +8,7 @@ function qualitativaNom(ordem) {
   resul.innerHTML = "";
   document.getElementById("table1").innerHTML = "";
   const dados1 = document.getElementById("dados1").value;
-  let vet = dados1.split(" ");
+  let vet = dados1.split(";");
   vet.forEach((v, i) => {
     vet[i] = vet[i].toUpperCase();
   });
@@ -41,17 +41,16 @@ function qualitativaNom(ordem) {
   pie(ctx, coluna1, coluna0);
 }
 
-function qualitativaXls(dados) {
-  const resul = document.getElementById("nominal");
+function qualitativaXls(dados1) {
+  const resul = document.getElementById("resultados1");
   resul.innerHTML = "";
-  document.getElementById("tableNom").innerHTML = "";
-  let vet = dados.slice(1, dados.length);
+  document.getElementById("table1").innerHTML = "";
+
+  let vet = dados1.slice(1, dados.length);
   vet.forEach((v, i) => {
     vet[i] = vet[i].toUpperCase();
   });
-  let coluna0;
-
-  coluna0 = linha(vet);
+  let coluna0 = linha(vet);
 
   let coluna1 = col1(coluna0, vet);
   let coluna2 = coluna(coluna1);
@@ -59,14 +58,43 @@ function qualitativaXls(dados) {
   let facPorcen = porcentagem(coluna2, vet.length);
   let modaV = moda(coluna1, coluna0);
   let medianaV = mediana(coluna0, coluna2, vet.length);
-  const header = [`${dados[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
-  const id = document.getElementById("tableNom");
+  const header = [`${dados1[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
+  const id = document.getElementById("table1");
+  const medida = document.getElementById("separatrizQuali").value;
+  const num = document.getElementById("numQuali").value;
+
+  let separa = separasTestes(coluna0, coluna2, vet.length, medida, num);
   table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Moda= ${modaV} / ${medianaV}`;
-  const ctx = document.getElementsByClassName("pieXlsx");
-
+  resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
+  const ctx = document.getElementsByClassName("pie");
   pie(ctx, coluna1, coluna0);
+
+  // const resul = document.getElementById("nominal");
+  // resul.innerHTML = "";
+  // document.getElementById("tableNom").innerHTML = "";
+  // let vet = dados.slice(1, dados.length);
+  // vet.forEach((v, i) => {
+  //   vet[i] = vet[i].toUpperCase();
+  // });
+  // let coluna0;
+
+  // coluna0 = linha(vet);
+
+  // let coluna1 = col1(coluna0, vet);
+  // let coluna2 = coluna(coluna1);
+  // let frPorcen = porcentagem(coluna1, vet.length);
+  // let facPorcen = porcentagem(coluna2, vet.length);
+  // let modaV = moda(coluna1, coluna0);
+  // let medianaV = mediana(coluna0, coluna2, vet.length);
+  // const header = [`${dados[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
+  // const id = document.getElementById("tableNom");
+  // table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
+
+  // resul.innerHTML += `Moda= ${modaV} / ${medianaV}`;
+  // const ctx = document.getElementsByClassName("pieXlsx");
+
+  // pie(ctx, coluna1, coluna0);
 }
 
 export { qualitativaNom, qualitativaXls };

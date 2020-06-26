@@ -4,8 +4,7 @@ import { quantitativaCont, quantitativaDisc } from "./modules/quantitativa.js";
 import { binomial } from "./modules/binomial.js";
 import { probNormal } from "./modules/normal.js";
 import { probUniforme } from "./modules/uniforme.js";
-import { correlacao } from "./modules/correlacao.js";
-//import * as quantitativa from "./modules/quantitativa.js";
+import { correlacao, futura } from "./modules/correlacao.js";
 
 const btn = document.getElementById("btn");
 btn.addEventListener("click", function criarTabela2() {
@@ -166,3 +165,6 @@ uniformeSelect.addEventListener("change", function () {
 
 const correBtn = document.getElementById("correBtn");
 correBtn.addEventListener("click", correlacao);
+
+const futuBtn = document.getElementById("futuBtn");
+futuBtn.addEventListener("click", futura);

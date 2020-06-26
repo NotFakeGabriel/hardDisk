@@ -1,5 +1,6 @@
 import { qualitativaXls } from "./qualitativa.js";
 import { quantitativaContXlsx, quantitativaDiscXlsx } from "./quantitativa.js";
+import { correlacaoXlsx } from "./correlacao.js";
 //monta os arrays para gerar a tabela
 
 function excel(obj) {
@@ -27,6 +28,8 @@ function escolha(nome, vet) {
       quantitativaContXlsx(vet);
       break;
     case "Correlacao":
+      console.log(vet);
+      correlacaoXlsx(vet);
       break;
   }
 }
