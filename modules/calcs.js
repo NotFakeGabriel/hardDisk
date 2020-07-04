@@ -45,9 +45,9 @@ function mediana(col0, col2, tot) {
       }
     });
     if (fac[0] == fac[1]) {
-      return `mediana = ${col0[fac[0]]}`;
+      return `Mediana = ${col0[fac[0]]}`;
     } else {
-      return `mediana = ${col0[fac[0]]} e ${col0[fac[1]]}`;
+      return `Mediana = ${col0[fac[0]]} e ${col0[fac[1]]}`;
     }
   } else {
     let med = Math.trunc(tot / 2);
@@ -57,7 +57,7 @@ function mediana(col0, col2, tot) {
         fac = i;
       }
     });
-    return `mediana = ${col0[fac]}`;
+    return `Mediana = ${col0[fac]}`;
   }
 }
 

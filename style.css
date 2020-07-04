@@ -1,7 +1,7 @@
-th,
-td {
-  border: 1px solid black;
-}
+body {
+  background-color:#F9F9F9;
+  }
+
 .hide {
   display: none;
 }
@@ -10,4 +10,46 @@ td {
   margin: 0 auto;
   height: 300px;
   padding: 10px;
+}
+nav{
+  background-color: #545454;
+}
+.nav-item{
+  color: #ffffff;
+  font-weight: bold;
+}
+a:hover {
+  color: #38b7ff;
+  text-decoration: underline;
+}
+#divdesc,
+#divprob,
+#divcorr{
+  display: none;
+}
+#sec1{
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 15px;
+  width: 70%;
+  margin:auto;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
+  margin-top: 2%;
+}
+.btn-secondary{
+  background-color: #545454;
+  color: #ffffff;
+  font-weight: bold;
+}
+#resultados1,#resultados{
+  font-weight: bold;
+}
+#divquali{
+  display: none;
+}
+#divquant{
+  display: none;
+}
+#divupload{
+  display: none;
 }

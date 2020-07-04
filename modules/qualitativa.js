@@ -14,7 +14,7 @@ function qualitativaNom(ordem) {
   });
   let coluna0;
   if (ordem) {
-    coluna0 = ordem.split(" ");
+    coluna0 = ordem.split(";");
     coluna0.forEach((v, i) => {
       coluna0[i] = coluna0[i].toUpperCase();
     });
@@ -36,9 +36,9 @@ function qualitativaNom(ordem) {
   let separa = separasTestes(coluna0, coluna2, vet.length, medida, num);
   table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
+  resul.innerHTML += `Moda>= ${modaV} / ${medianaV} / ${separa}`;
   const ctx = document.getElementsByClassName("pie");
-  pie(ctx, coluna1, coluna0);
+  pie(ctx, frPorcen, coluna0);
 }
 
 function qualitativaXls(dados1) {
@@ -66,9 +66,9 @@ function qualitativaXls(dados1) {
   let separa = separasTestes(coluna0, coluna2, vet.length, medida, num);
   table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Moda= ${modaV} / Mediana= ${medianaV} / ${separa}`;
+  resul.innerHTML += `Moda= ${modaV} / ${medianaV} / ${separa}`;
   const ctx = document.getElementsByClassName("pie");
-  pie(ctx, coluna1, coluna0);
+  pie(ctx, frPorcen, coluna0);
 
   // const resul = document.getElementById("nominal");
   // resul.innerHTML = "";

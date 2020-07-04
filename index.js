@@ -164,7 +164,54 @@ uniformeSelect.addEventListener("change", function () {
 });
 
 const correBtn = document.getElementById("correBtn");
+if (correBtn){
 correBtn.addEventListener("click", correlacao);
+}
 
 const futuBtn = document.getElementById("futuBtn");
+if (futuBtn){
 futuBtn.addEventListener("click", futura);
+}
+
+
+document.getElementById("navbtdesc").addEventListener("click", function (){
+  document.getElementById("divdesc").style.display = 'block';
+  document.getElementById("divprob").style.display = 'none';
+  document.getElementById("divcorr").style.display = 'none';
+})
+
+document.getElementById("navbtprob").addEventListener("click", function (){
+  document.getElementById("divdesc").style.display = 'none';
+  document.getElementById("divprob").style.display = 'block';
+  document.getElementById("divcorr").style.display = 'none';
+})
+
+document.getElementById("navbtcorr").addEventListener("click", function (){
+  document.getElementById("divdesc").style.display = 'none';
+  document.getElementById("divprob").style.display = 'none';
+  document.getElementById("divcorr").style.display = 'block';
+  //if (correBtn && futuBtn){
+  correBtn.addEventListener("click", correlacao);
+  futuBtn.addEventListener("click", futura);
+  //} else {
+  //    window.alert("Ops, ocorreu um erro, recarregue a página")
+  //}
+})
+
+document.getElementById("navbthome").addEventListener("click", function (){
+  document.getElementById("divdesc").style.display = 'none';
+  document.getElementById("divprob").style.display = 'none';
+  document.getElementById("divcorr").style.display = 'none';
+})
+
+document.getElementById("btnshowquali").addEventListener("click", function (){
+  document.getElementById("divquali").style.display = 'block';
+  document.getElementById("divquant").style.display = 'none';
+  document.getElementById("divupload").style.display = 'block';
+})
+
+document.getElementById("btnshowquant").addEventListener("click", function (){
+  document.getElementById("divquali").style.display = 'none';
+  document.getElementById("divquant").style.display = 'block';
+  document.getElementById("divupload").style.display = 'block';
+})

@@ -4,17 +4,30 @@ function pie(ctx, dados, labels) {
       {
         data: dados,
         backgroundColor: [
-          "rgb(0,128,0)",
-          "rgb(0,0,205)",
-          "rgb(210,105,30)",
-          "rgb(128,0,128)",
-          "rgb(180,0,0)",
-          "rgb(0,191,255)",
-          "rgb(0,250,154)",
-          "rgb(255,0,255)",
-          "rgb(218,165,32)",
-          "rgb(128,0,0)",
+          "rgba(243, 206, 104, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 59, 88, 0.2)",
+          "rgba(67, 246, 67, 0.2)",
+          "rgba(210,105,30,0.2)",
+          "rgba(0,191,255,0.2)",
+          "rgba(0,250,154,0.2)",
+          "rgba(255,0,255,0.2)",
+          "rgba(218,165,32,0.2)",
+          "rgba(128,0,0,0.2)",
         ],
+        borderColor: [
+          "rgba(243, 206, 104, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 59, 88, 1)",
+          "rgba(67, 246, 67, 1)",
+          "rgba(210,105,30,1)",
+          "rgba(0,191,255,1)",
+          "rgba(0,250,154,1)",
+          "rgba(255,0,255,1)",
+          "rgba(218,165,32,1)",
+          "rgba(128,0,0,1)",
+        ],
+        borderWidth: 1
       },
     ],
     labels: labels,
@@ -33,27 +46,28 @@ function pie(ctx, dados, labels) {
   });
 }
 function bar(ctx, dados, labels, teste) {
+  console.log(labels)
   let data = {
     datasets: [
       {
         data: dados,
+        label: 'FI',
         backgroundColor: [
-          "rgb(0,128,0)",
-          "rgb(0,0,205)",
-          "rgb(210,105,30)",
-          "rgb(128,0,128)",
-          "rgb(180,0,0)",
-          "rgb(0,191,255)",
-          "rgb(0,250,154)",
-          "rgb(255,0,255)",
-          "rgb(218,165,32)",
-          "rgb(128,0,0)",
+          "rgb(0,128,0,0.3)",
+          "rgb(0,0,205,0.3)",
+          "rgb(210,105,30,0.3)",
+          "rgb(128,0,128,0.3)",
+          "rgb(180,0,0,0.3)",
+          "rgb(0,191,255,0.3)",
+          "rgb(0,250,154,0.3)",
+          "rgb(255,0,255,0.3)",
+          "rgb(218,165,32,0.3)",
+          "rgb(128,0,0,0.3)",
         ],
       },
     ],
     labels: labels,
   };
-
   if (teste) {
     const barChart = new Chart(ctx, {
       type: "bar",
@@ -88,7 +102,7 @@ function bar(ctx, dados, labels, teste) {
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          position: "left",
+          position: "top",
           fullWidth: false,
         },
       },
@@ -101,7 +115,7 @@ function bar(ctx, dados, labels, teste) {
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          position: "left",
+          position: "top",
           fullWidth: false,
         },
         scales: {

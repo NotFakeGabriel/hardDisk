@@ -13,6 +13,7 @@ function coluna(valor) {
 }
 
 function table(header, idtab, ...colunas) {
+  idtab.classList.add("table")
   colunas[0].forEach((func, i) => {
     let row = idtab.insertRow(i);
     colunas.forEach((ce, b) => {
@@ -20,10 +21,22 @@ function table(header, idtab, ...colunas) {
       cell.innerHTML = colunas[b][i];
     });
   });
+  if (document.getElementById("divdesc").style.display == "block"){
+    if (document.getElementById("divquant").style.display == "block"){
+      header[0] = document.getElementById("nomequant").value;
+    } else if (document.getElementById("divquali").style.display == "block"){
+      header[0] = document.getElementById("nomequali").value;
+    }
+  }
   let row = idtab.insertRow(0);
   header.forEach((head, i) => {
     row.insertCell(i).outerHTML = "<th>" + head + "</th>";
   });
+  if (colunas.length == 7){
+    let last = colunas[0].length -1
+  if (idtab.rows[1].cells[1].innerHTML < 1){idtab.deleteRow(1)}
+  if (idtab.rows[last].cells[1].innerHTML < 1){idtab.deleteRow(last)}
+  }
 }
 
 function linha(vetor) {
