@@ -1,6 +1,6 @@
 //Qualitativa!!!!!!!!!!!!!!!!!
 import { coluna, table, col1, linha } from "./tables.js";
-import { moda, mediana, porcentagem, separasTestes } from "./calcs.js";
+import { moda, porcentagem, separasTestes } from "./calcs.js";
 import { pie } from "./charts.js";
 
 function qualitativaNom(ordem) {
@@ -27,7 +27,7 @@ function qualitativaNom(ordem) {
   let frPorcen = porcentagem(coluna1, vet.length);
   let facPorcen = porcentagem(coluna2, vet.length);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = mediana(coluna0, coluna2, vet.length);
+  let medianaV = separasTestes(coluna0, coluna2, vet.length, "Quartil", 2);
   const header = ["xi", "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("table1");
   const medida = document.getElementById("separatrizQuali").value;
@@ -36,7 +36,7 @@ function qualitativaNom(ordem) {
   let separa = separasTestes(coluna0, coluna2, vet.length, medida, num);
   table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Moda>= ${modaV} / ${medianaV} / ${separa}`;
+  resul.innerHTML += `Moda = ${modaV} / Mediana = ${medianaV[1]} / ${separa[0]}`;
   const ctx = document.getElementsByClassName("pie");
   pie(ctx, frPorcen, coluna0);
 }
@@ -57,7 +57,7 @@ function qualitativaXls(dados1) {
   let frPorcen = porcentagem(coluna1, vet.length);
   let facPorcen = porcentagem(coluna2, vet.length);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = mediana(coluna0, coluna2, vet.length);
+  let medianaV = separasTestes(coluna0, coluna2, vet.length, "Quartil", 2);
   const header = [`${dados1[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("table1");
   const medida = document.getElementById("separatrizQuali").value;
@@ -66,7 +66,7 @@ function qualitativaXls(dados1) {
   let separa = separasTestes(coluna0, coluna2, vet.length, medida, num);
   table(header, id, coluna0, coluna1, coluna2, frPorcen, facPorcen);
 
-  resul.innerHTML += `Moda= ${modaV} / ${medianaV} / ${separa}`;
+  resul.innerHTML += `Moda= ${modaV} / Mediana = ${medianaV[1]} / ${separa[0]}`;
   const ctx = document.getElementsByClassName("pie");
   pie(ctx, frPorcen, coluna0);
 

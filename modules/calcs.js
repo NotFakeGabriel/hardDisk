@@ -107,12 +107,14 @@ function separasTestes(
     let fant = fac == 0 ? 0 : col2[fac - 1];
     let find = fi[fac];
     let md = l + ((med - fant) / find) * h;
-    return `${medida} ${num}= ${md.toFixed(2)}`;
+    return [`${medida} ${num}= ${md.toFixed(2)}`, md.toFixed(2)];
   } else {
-    console.log(col2, fac, med);
-    return `${medida} ${num}= ${
-      isNaN(col0[fac]) ? col0[fac] : col0[fac].toFixed(2)
-    }`;
+    return [
+      `${medida} ${num}= ${
+        isNaN(col0[fac]) ? col0[fac] : col0[fac].toFixed(2)
+      }`,
+      col0[fac],
+    ];
   }
 }
 
@@ -148,6 +150,7 @@ function medianaCont(col0, col2, tot, h, fi) {
     });
 
     if (fac[0] == fac[1]) {
+      console.log(fac);
       let l = col0[fac[0]].split("|", 2);
       l = Number(l[0]);
       let fant = fac[0] == 0 ? 0 : col2[fac[0] - 1];
@@ -177,6 +180,7 @@ function medianaCont(col0, col2, tot, h, fi) {
         fac = i;
       }
     });
+
     let l = col0[fac].split("|", 2);
     l = Number(l[0]);
     let fant = fac == 0 ? 0 : col2[fac - 1];

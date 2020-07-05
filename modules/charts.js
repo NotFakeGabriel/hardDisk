@@ -1,3 +1,6 @@
+var pieChart = "Empty";
+var barChart = "Empty";
+var mixedChart = "Empty";
 function pie(ctx, dados, labels) {
   let data = {
     datasets: [
@@ -27,12 +30,15 @@ function pie(ctx, dados, labels) {
           "rgba(218,165,32,1)",
           "rgba(128,0,0,1)",
         ],
-        borderWidth: 1
+        borderWidth: 1,
       },
     ],
     labels: labels,
   };
-  const pieChart = new Chart(ctx, {
+  if (pieChart != "Empty") {
+    pieChart.destroy();
+  }
+  pieChart = new Chart(ctx, {
     type: "pie",
     data,
     options: {
@@ -46,12 +52,11 @@ function pie(ctx, dados, labels) {
   });
 }
 function bar(ctx, dados, labels, teste) {
-  console.log(labels)
   let data = {
     datasets: [
       {
         data: dados,
-        label: 'FI',
+        label: "FI",
         backgroundColor: [
           "rgb(0,128,0,0.3)",
           "rgb(0,0,205,0.3)",
@@ -69,7 +74,10 @@ function bar(ctx, dados, labels, teste) {
     labels: labels,
   };
   if (teste) {
-    const barChart = new Chart(ctx, {
+    if (barChart != "Empty") {
+      barChart.destroy();
+    }
+    barChart = new Chart(ctx, {
       type: "bar",
       data,
       options: {
@@ -108,7 +116,10 @@ function bar(ctx, dados, labels, teste) {
       },
     });
   } else {
-    const barChart = new Chart(ctx, {
+    if (barChart != "Empty") {
+      barChart.destroy();
+    }
+    barChart = new Chart(ctx, {
       type: "bar",
       data,
       options: {
@@ -149,8 +160,10 @@ function bar(ctx, dados, labels, teste) {
 
 function mixed(ctx, dados, reta) {
   ctx.innerHTML = "";
-
-  var mixedChart = new Chart(ctx, {
+  if (mixedChart != "Empty") {
+    mixedChart.destroy();
+  }
+  mixedChart = new Chart(ctx, {
     type: "scatter",
     data: {
       datasets: [

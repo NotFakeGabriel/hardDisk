@@ -3,8 +3,6 @@ import {
   moda,
   porcentagem,
   mult,
-  medianaCont,
-  mediana,
   variancia,
   separasTestes,
 } from "./calcs.js";
@@ -33,10 +31,13 @@ function quantitativaCont() {
   const xiv = xi(linhas);
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
-  const medianav = medianaCont(
+  const medianav = separasTestes(
     linhaTxt,
     coluna4,
     vetN.length,
+    "Quartil",
+    2,
+    true,
     infos[1],
     valores
   );
@@ -62,8 +63,8 @@ function quantitativaCont() {
   let tipo = document.getElementsByName("tipoQuanti");
   tipo = tipo[0].checked ? "amostra" : "populacao";
   let vari = variancia(xiv, valores, vetN.length, mediav, tipo);
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / ${medianav} / 
-  ${separa} / 
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / mediana =${medianav[1]} / 
+  ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, valores, linhaTxt, true);
@@ -146,7 +147,7 @@ function quantitativaDisc() {
   let facPorcen = porcentagem(coluna2, vetN.length);
   let mediaV = media(coluna0, coluna1);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = mediana(coluna0, coluna2, vetN.length);
+  let medianaV = separasTestes(coluna0, coluna2, vetN.length, "Quartil", 2);
   const header = ["xi", "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("table");
 
@@ -160,8 +161,8 @@ function quantitativaDisc() {
   tipo = tipo[0].checked ? "amostra" : "populacao";
   let vari = variancia(coluna0, coluna1, vetN.length, mediaV, tipo);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV} / 
-  ${separa} / 
+  resul.innerHTML += `Média = ${mediaV} / Moda = ${modaV} / Mediana = ${medianaV[1]} / 
+  ${separa[1]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, coluna1, coluna0);
@@ -186,10 +187,13 @@ function quantitativaContXlsx(dados) {
   const xiv = xi(linhas);
   const mediav = media(xiv, valores);
   const modav = moda(valores, xiv);
-  const medianav = medianaCont(
+  const medianav = separasTestes(
     linhaTxt,
     coluna4,
     vetN.length,
+    "Quartil",
+    2,
+    true,
     infos[1],
     valores
   );
@@ -215,8 +219,8 @@ function quantitativaContXlsx(dados) {
   let tipo = document.getElementsByName("tipoQuanti");
   tipo = tipo[0].checked ? "amostra" : "populacao";
   let vari = variancia(xiv, valores, vetN.length, mediav, tipo);
-  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / ${medianav} / 
-  ${separa} / 
+  resul.innerHTML += `Média= ${mediav} / Moda= ${modav} / Mediana = ${medianav[1]} / 
+  ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, valores, linhaTxt, true);
@@ -276,7 +280,7 @@ function quantitativaDiscXlsx(dados1) {
   let facPorcen = porcentagem(coluna2, vetN.length);
   let mediaV = media(coluna0, coluna1);
   let modaV = moda(coluna1, coluna0);
-  let medianaV = mediana(coluna0, coluna2, vetN.length);
+  let medianaV = separasTestes(coluna0, coluna2, vetN.length, "Quartil", 2);
   const header = [`${dados1[0]} (xi)`, "fi", "fac", "FR%", "Fac%"];
   const id = document.getElementById("table");
 
@@ -290,8 +294,8 @@ function quantitativaDiscXlsx(dados1) {
   tipo = tipo[0].checked ? "amostra" : "populacao";
   let vari = variancia(coluna0, coluna1, vetN.length, mediaV, tipo);
 
-  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / ${medianaV} / 
-  ${separa} / 
+  resul.innerHTML += `Média= ${mediaV} / Moda= ${modaV} / Mediana = ${medianaV[1]} / 
+  ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
   bar(ctx, coluna1, coluna0);

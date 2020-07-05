@@ -10,6 +10,7 @@ const convertNumber = (vetor) => {
 
   return novo;
 };
+
 const convert = (vetor) => {
   let novo = [];
   vetor.forEach((vet, i) => {
