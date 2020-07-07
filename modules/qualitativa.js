@@ -41,7 +41,7 @@ function qualitativaNom(ordem) {
   pie(ctx, frPorcen, coluna0);
 }
 
-function qualitativaXls(dados1) {
+function qualitativaXls(dados1, ordem) {
   const resul = document.getElementById("resultados1");
   resul.innerHTML = "";
   document.getElementById("table1").innerHTML = "";
@@ -50,7 +50,15 @@ function qualitativaXls(dados1) {
   vet.forEach((v, i) => {
     vet[i] = vet[i].toUpperCase();
   });
-  let coluna0 = linha(vet);
+  let coluna0;
+  if (ordem) {
+    coluna0 = ordem.split(";");
+    coluna0.forEach((v, i) => {
+      coluna0[i] = coluna0[i].toUpperCase();
+    });
+  } else {
+    coluna0 = linha(vet);
+  }
 
   let coluna1 = col1(coluna0, vet);
   let coluna2 = coluna(coluna1);

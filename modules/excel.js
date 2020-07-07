@@ -18,9 +18,18 @@ function excel(obj) {
 
 function escolha(nome, vet) {
   let radio = document.getElementsByName("Quantitativa");
+  let radio1 = document.getElementsByName("Qualitativa");
   switch (nome) {
     case "Modelo Qualitativo":
-      qualitativaXls(vet);
+      if (radio1[0].checked) {
+        qualitativaXls(vet);
+      }
+      break;
+    case "Modelo Qualitativo_ordinal":
+      if (radio1[1].checked) {
+        let ordem = document.getElementById("ordem").value;
+        qualitativaXls(vet, ordem);
+      }
       break;
     case "Modelo Discreto":
       if (radio[0].checked) {
