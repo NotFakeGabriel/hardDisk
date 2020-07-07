@@ -82,7 +82,7 @@ function bar(ctx, dados, labels, teste) {
       data,
       options: {
         scales: {
-          /*
+          // /*
           xAxes: [
             {
               categoryPercentage: 1.0,
@@ -95,7 +95,7 @@ function bar(ctx, dados, labels, teste) {
               },
             },
           ],
-*/
+          //*/
           yAxes: [
             {
               display: true,
