@@ -17,15 +17,22 @@ function excel(obj) {
 }
 
 function escolha(nome, vet) {
+  let radio = document.getElementsByName("Quantitativa");
   switch (nome) {
     case "Modelo Qualitativo":
       qualitativaXls(vet);
       break;
     case "Modelo Discreto":
-      quantitativaDiscXlsx(vet);
+      if (radio[0].checked) {
+        quantitativaDiscXlsx(vet);
+      }
+
       break;
     case "Modelo Continuo":
-      quantitativaContXlsx(vet);
+      if (radio[1].checked) {
+        quantitativaContXlsx(vet);
+      }
+
       break;
     case "Correlacao":
       console.log(vet);

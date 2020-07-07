@@ -1,49 +1,57 @@
+<section align="center" id="sec1">
+  <br>
+  <h3>Probabilidade</h3>
+  <br>
+  <div align="center">
+  <button id="btnshownorm" class="btn btn-secondary">Normal</button>
+  <button id="btnshowunif" class="btn btn-secondary">Uniforme</button>
+  <button id="btnshowbino" class="btn btn-secondary">Binomial</button>
+</div>
 <div
   id="probabilidade"
-  class="container my-4 border col-lg-6 col-md-12 col-sm-12 text-center"
 >
-  <h3>Probabilidade</h3>
   <br />
 
   <div id="binomial">
-    <h4>Binomial</h4>
-    <input type="text" name="" id="n" />Amostra(N)<br />
-    <input type="text" name="" id="p" />Sucesso (p) <br />
-    <input type="text" name="" id="q" />Fracasso (q) <br />
-    <input type="text" name="" id="k" />Evento (K) <br />
-    <button id="binomialBtn" class="btn btn-secondary">Calcular</button>
-  </div>
+    <h4>Binomial</h4><br>
+    <input type="text" class="form-control" name="" id="n" placeholder="Amostra (N)"/><br />
+    <input type="text" class="form-control" name="" id="p" placeholder='Sucesso (p) (decimal separado por ".")'/><br />
+    <input type="text" class="form-control" name="" id="q" placeholder='Fracasso (q) (decimal separado por ".")'/><br />
+    <input type="text" class="form-control" name="" id="k" placeholder='Evento (K) (separado por ";")'/><br />
+    <button id="binomialBtn" class="btn btn-secondary">Calcular</button><br><br><br>
   <div id="resulBino"></div>
 </div>
 
 <div id="normal">
-  <h4>Normal</h4>
-  <select name="" id="normalSelect">
+  <h4>Normal</h4><br>
+  <select class="form-control" name="" id="normalSelect">
     <option value="maior">Maior</option>
     <option value="entre">Entre</option>
     <option value="menor">Menor</option>
-  </select>
-  <input type="text" name="" id="media" />Média
-  <input type="text" name="" id="desvio" />Desvio Padrão
-  <input type="text" name="" id="quantidade" />quantidade
-  <input type="text" name="" id="de" class="hide" />De
-  <input type="text" name="" id="ate" class="hide" />Até
-  <button id="normalBtn" class="btn btn-secondary">Calcular</button>
+  </select><br>
+  <input type="text" class="form-control" name="" id="media" placeholder='Média (decimal separado por ".")'/><br>
+  <input type="text" class="form-control" name="" id="desvio" placeholder='Desvio Padrão (decimal separado por ".")'/><br>
+  <input type="text" class="form-control" name="" id="quantidade" placeholder="Quantidade"/><br>
+  <input type="text" class="form-control" name="" id="de" placeholder="De"/><br>
+  <input type="text" class="form-control" name="" id="ate" placeholder="Até"/><br>
+  <button id="normalBtn" class="btn btn-secondary">Calcular</button><br><br>
   <div id="normalResul"></div>
 </div>
 <div id="uniforme">
-  <h4>Uniforme</h4>
-  <select name="" id="uniformeSelect">
-    <option value="maior">Maior</option>
-    <option value="entre">Entre</option>
-    <option value="menor">Menor</option>
-  </select>
-  <input type="text" name="" id="minimo" />Ponto minimo
-  <input type="text" name="" id="maximo" />Ponto Maximo
-  <input type="text" name="" id="quantidadeUniforme" />Quantidade
-  <input type="text" name="" id="deUniforme" class="hide" />De
-  <input type="text" name="" id="ateUniforme" class="hide" />Até
-  <button id="uniformeBtn" class="btn btn-secondary">Calcular</button>
+  <h4>Uniforme</h4><br>
+  <select class="form-control" name="" id="uniformeSelect">
+    <option class="form-control" value="maior">Maior</option>
+    <option class="form-control" value="entre">Entre</option>
+    <option class="form-control" value="menor">Menor</option>
+  </select><br>
+  <input type="text" class="form-control" name="" id="minimo" placeholder="Ponto Mínimo"/><br>
+  <input type="text" class="form-control" name="" id="maximo" placeholder="Ponto Máximo"/><br>
+  <input type="text" class="form-control" name="" id="quantidadeUniforme" placeholder="Quantidade"/><br>
+  <input type="text" class="form-control" name="" id="deUniforme" placeholder="De"/><br>
+  <input type="text" class="form-control" name="" id="ateUniforme" placeholder="Até"/><br>
+  <button id="uniformeBtn" class="btn btn-secondary">Calcular</button><br><br>
   <div id="uniformeResul"></div>
 </div>
+</div>
+</section><br>
 <script src="index.js" type="module"></script>

@@ -67,6 +67,7 @@ function futura() {
   }
 }
 function correlacaoXlsx(array) {
+  console.log("foi");
   let novo = [];
   array.forEach((elem) => {
     novo.push(elem[0]);

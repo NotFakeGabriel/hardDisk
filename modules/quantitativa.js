@@ -67,7 +67,7 @@ function quantitativaCont() {
   ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
-  bar(ctx, valores, linhaTxt, true);
+  bar(ctx, col4, linhaTxt, true);
 }
 
 function textosColuna1(valores) {
@@ -165,7 +165,7 @@ function quantitativaDisc() {
   ${separa[1]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
-  bar(ctx, coluna1, coluna0);
+  bar(ctx, frPorcen, coluna0);
 }
 
 function quantitativaContXlsx(dados) {
@@ -223,7 +223,7 @@ function quantitativaContXlsx(dados) {
   ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
-  bar(ctx, valores, linhaTxt, true);
+  bar(ctx, col4, linhaTxt, true);
 
   // const resul = document.getElementById("continua");
   // resul.innerHTML = "";
@@ -298,7 +298,7 @@ function quantitativaDiscXlsx(dados1) {
   ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
-  bar(ctx, coluna1, coluna0);
+  bar(ctx, frPorcen, coluna0);
 
   // const resul = document.getElementById("discreta");
   // resul.innerHTML += `<div id="tabela2"></div>`;

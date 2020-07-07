@@ -16,30 +16,30 @@ function probNormal() {
       let ateZ = numberZ(ate, media, desvio);
 
       if (de < media) {
-        resul.innerText = `Probabilidade = ${(deZ + ateZ) * 100}%`;
+        resul.innerText = `Probabilidade = ${((deZ + ateZ) * 100).toFixed(2)}%`;
       } else if (de == media) {
-        resul.innerText = `Probabilidade = ${ateZ * 100}%`;
+        resul.innerText = `Probabilidade = ${(ateZ * 100).toFixed(2)}%`;
       } else {
-        resul.innerText = `Probabilidade = ${(ateZ - deZ) * 100}%`;
+        resul.innerText = `Probabilidade = ${((ateZ - deZ) * 100).toFixed(2)}%`;
       }
       break;
     case "maior":
       if (quant > media) {
         numZ = numberZ(quant, media, desvio);
-        resul.innerText = `Probabilidade = ${(0.5 - numZ) * 100}%`;
+        resul.innerText = `Probabilidade = ${((0.5 - numZ) * 100).toFixed(2)}%`;
       } else {
         numZ = numberZ(quant, media, desvio);
-        resul.innerText = `Probabilidade = ${(0.5 + numZ) * 100}%`;
+        resul.innerText = `Probabilidade = ${((0.5 + numZ) * 100).toFixed(2)}%`;
       }
 
       break;
     case "menor":
       if (quant < media) {
         numZ = numberZ(quant, media, desvio);
-        resul.innerText = `Probabilidade = ${(0.5 - numZ) * 100}%`;
+        resul.innerText = `Probabilidade = ${((0.5 - numZ) * 100).toFixed(2)}%`;
       } else {
         numZ = numberZ(quant, media, desvio);
-        resul.innerText = `Probabilidade = ${(0.5 + numZ) * 100}%`;
+        resul.innerText = `Probabilidade = ${((0.5 + numZ) * 100).toFixed(2)}%`;
       }
       break;
   }

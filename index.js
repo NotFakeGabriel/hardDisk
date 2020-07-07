@@ -54,6 +54,23 @@ input.addEventListener("change", function () {
     });
   });
 });
+var input1 = document.getElementById("upload1");
+input1.addEventListener("change", function () {
+  /*
+  readXlsxFile(input.files[0]).then(function (test) {
+    console.log(test);
+  });
+*/
+  readXlsxFile(input1.files[0], { getSheets: true }).then((sheets) => {
+    sheets.forEach((sheet, i) => {
+      let name = sheets[i].name;
+      readXlsxFile(input1.files[0], { sheet: name }).then((data) => {
+        let obj = { name: name, data: data };
+        excel(obj);
+      });
+    });
+  });
+});
 const separa = document.getElementById("separatrizQuali");
 const num = document.getElementById("numQuali");
 separa.addEventListener("change", function () {
@@ -113,23 +130,23 @@ const normalSelect = document.getElementById("normalSelect");
 normalSelect.addEventListener("change", function () {
   if (normalSelect.value == "entre") {
     let de = document.getElementById("de");
-    de.classList.remove("hide");
+    de.style.display = "block";
     de.value = "";
     let ate = document.getElementById("ate");
-    ate.classList.remove("hide");
+    ate.style.display = "block";
     ate.value = "";
     let quant = document.getElementById("quantidade");
-    quant.classList.add("hide");
+    quant.style.display = "none";
     quant.value = "";
   } else {
     let de = document.getElementById("de");
-    de.classList.add("hide");
+    de.style.display = "none";
     de.value = "";
     let ate = document.getElementById("ate");
-    ate.classList.add("hide");
+    ate.style.display = "none";
     ate.value = "";
     let quant = document.getElementById("quantidade");
-    quant.classList.remove("hide");
+    quant.style.display = "block";
     quant.value = "";
   }
 });
@@ -143,75 +160,113 @@ const ateUni = document.getElementById("ateUniforme");
 const quantUni = document.getElementById("quantidadeUniforme");
 uniformeSelect.addEventListener("change", function () {
   if (uniformeSelect.value == "entre") {
-    deUni.classList.remove("hide");
+    deUni.style.display = "block";
     deUni.value = "";
 
-    ateUni.classList.remove("hide");
+    ateUni.style.display = "block";
     ateUni.value = "";
 
-    quantUni.classList.add("hide");
+    quantUni.style.display = "none";
     quantUni.value = "";
   } else {
-    deUni.classList.add("hide");
+    deUni.style.display = "none";
     deUni.value = "";
 
-    ateUni.classList.add("hide");
+    ateUni.style.display = "none";
     ateUni.value = "";
 
-    quantUni.classList.remove("hide");
+    quantUni.style.display = "block";
     quantUni.value = "";
   }
 });
 
 const correBtn = document.getElementById("correBtn");
-if (correBtn){
-correBtn.addEventListener("click", correlacao);
+if (correBtn) {
+  correBtn.addEventListener("click", correlacao);
 }
 
 const futuBtn = document.getElementById("futuBtn");
-if (futuBtn){
-futuBtn.addEventListener("click", futura);
+if (futuBtn) {
+  futuBtn.addEventListener("click", futura);
 }
 
+document.getElementById("navbtdesc").addEventListener("click", opendesc);
+document.getElementById("cardbtdesc").addEventListener("click", opendesc);
 
-document.getElementById("navbtdesc").addEventListener("click", function (){
-  document.getElementById("divdesc").style.display = 'block';
-  document.getElementById("divprob").style.display = 'none';
-  document.getElementById("divcorr").style.display = 'none';
-})
+function opendesc() {
+  document.getElementById("divdesc").style.display = "block";
+  document.getElementById("divprob").style.display = "none";
+  document.getElementById("divcorr").style.display = "none";
+  document.getElementById("homepage").style.display = "none";
+}
 
-document.getElementById("navbtprob").addEventListener("click", function (){
-  document.getElementById("divdesc").style.display = 'none';
-  document.getElementById("divprob").style.display = 'block';
-  document.getElementById("divcorr").style.display = 'none';
-})
+document.getElementById("navbtprob").addEventListener("click", openprob);
+document.getElementById("cardbtprob").addEventListener("click", openprob);
 
-document.getElementById("navbtcorr").addEventListener("click", function (){
-  document.getElementById("divdesc").style.display = 'none';
-  document.getElementById("divprob").style.display = 'none';
-  document.getElementById("divcorr").style.display = 'block';
-  //if (correBtn && futuBtn){
-  correBtn.addEventListener("click", correlacao);
-  futuBtn.addEventListener("click", futura);
-  //} else {
-  //    window.alert("Ops, ocorreu um erro, recarregue a página")
-  //}
-})
+function openprob() {
+  document.getElementById("divdesc").style.display = "none";
+  document.getElementById("divprob").style.display = "block";
+  document.getElementById("divcorr").style.display = "none";
+  document.getElementById("homepage").style.display = "none";
+}
 
-document.getElementById("navbthome").addEventListener("click", function (){
-  document.getElementById("divdesc").style.display = 'none';
-  document.getElementById("divprob").style.display = 'none';
-  document.getElementById("divcorr").style.display = 'none';
-})
+document.getElementById("navbtcorr").addEventListener("click", opencorr);
+document.getElementById("cardbtcorr").addEventListener("click", opencorr);
 
-document.getElementById("btnshowquali").addEventListener("click", function (){
-  document.getElementById("divquali").style.display = 'block';
-  document.getElementById("divquant").style.display = 'none';
-  document.getElementById("divupload").style.display = 'block';
-})
+function opencorr() {
+  document.getElementById("divdesc").style.display = "none";
+  document.getElementById("divprob").style.display = "none";
+  document.getElementById("divcorr").style.display = "block";
+  document.getElementById("homepage").style.display = "none";
+}
 
-document.getElementById("btnshowquant").addEventListener("click", function (){
-  document.getElementById("divquali").style.display = 'none';
-  document.getElementById("divquant").style.display = 'block';
-  document.getElementById("divupload").style.display = 'block';
-})
+document.getElementById("navbthome").addEventListener("click", function () {
+  document.getElementById("divdesc").style.display = "none";
+  document.getElementById("divprob").style.display = "none";
+  document.getElementById("divcorr").style.display = "none";
+  document.getElementById("homepage").style.display = "block";
+});
+
+document.getElementById("btnshowquali").addEventListener("click", function () {
+  document.getElementById("divquali").style.display = "block";
+  document.getElementById("divquant").style.display = "none";
+  document.getElementById("divupload").style.display = "block";
+});
+
+document.getElementById("btnshowquant").addEventListener("click", function () {
+  document.getElementById("divquali").style.display = "none";
+  document.getElementById("divquant").style.display = "block";
+  document.getElementById("divupload").style.display = "block";
+});
+
+document.getElementById("btnshownorm").addEventListener("click", function () {
+  document.getElementById("normal").style.display = "block";
+  document.getElementById("uniforme").style.display = "none";
+  document.getElementById("binomial").style.display = "none";
+});
+document.getElementById("btnshowunif").addEventListener("click", function () {
+  document.getElementById("normal").style.display = "none";
+  document.getElementById("uniforme").style.display = "block";
+  document.getElementById("binomial").style.display = "none";
+});
+document.getElementById("btnshowbino").addEventListener("click", function () {
+  document.getElementById("normal").style.display = "none";
+  document.getElementById("uniforme").style.display = "none";
+  document.getElementById("binomial").style.display = "block";
+});
+
+document.getElementById("numQuali").addEventListener("input", mudarValorBarra1);
+function mudarValorBarra1() {
+  let range = document.getElementById("numQuali");
+  let valor = range.value;
+  let selec = document.getElementById("separatrizQuali").value;
+  document.getElementById("showrangequali").innerHTML = selec + " " + valor;
+}
+
+document.getElementById("numQuant").addEventListener("input", mudarValorBarra2);
+function mudarValorBarra2() {
+  let range = document.getElementById("numQuant");
+  let valor = range.value;
+  let selec = document.getElementById("separatrizQuant").value;
+  document.getElementById("showrangequant").innerHTML = selec + " " + valor;
+}

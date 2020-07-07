@@ -1,20 +1,69 @@
-<div>
-  <h3>Correlação e regressão</h3>
-  <input type="text" id="correX" />Variavel Independente (x)
+<section align="center" id="sec1">
+  <div>
+    <h3>Correlação e regressão</h3>
+    <br />
+    <input
+      type="text"
+      class="form-control"
+      id="correX"
+      placeholder='Variável Independente (x) (separado por ";")'
+    /><br />
 
-  <input type="text" id="correY" />Variavel Dependente (y)
-  <button id="correBtn" class="btn btn-secondary">Calcular</button>
-  <div id="correResul"></div>
-  <div><canvas class="mixed"></canvas></div>
+    <input
+      type="text"
+      class="form-control"
+      id="correY"
+      placeholder='Variável Dependente (y) (separado por ";")'
+    /><br />
+    <button id="correBtn" class="btn btn-secondary">Calcular</button
+    ><br /><br />
+    <div id="correResul"></div>
+    <br />
+    <div><canvas class="mixed"></canvas></div>
+    <br />
 
-  <div id="futura">
-    <h4>Projeção futura</h4>
-    <input type="text" id="futuX" /> X <input type="text" id="futuY" /> Y
-    <button id="futuBtn" class="btn btn-secondary">Calcular</button>
-    <div id="futuResul"></div>
+    <div id="futura">
+      <h4>Projeção futura</h4>
+      <input
+        type="text"
+        class="form-control"
+        id="futuX"
+        placeholder="X"
+      /><br />
+      <input
+        type="text"
+        class="form-control"
+        id="futuY"
+        placeholder="Y"
+      /><br />
+      <button id="futuBtn" class="btn btn-secondary">Calcular</button><br />
+      <div id="futuResul"></div>
+      <br />
+    </div>
+    <br />
+    <div id="divuploadcorr">
+      <h4>Upload de arquivo (.XLSX)</h4>
+      <input
+        id="upload1"
+        type="file"
+        class="form-control-file"
+        name="files[]"
+      />
+    </div>
+    <div id="planilha" class="hide">
+      <table id="tableNom"></table>
+      <div id="nominal"></div>
+      <div class="x_content"><canvas class="pieXlsx"></canvas></div>
+      <table id="tableDisc"></table>
+      <div id="discreta"></div>
+      <div class="x_content"><canvas class="barDiscXlsx"></canvas></div>
+      <table id="tableCon"></table>
+      <div id="continua"></div>
+      <div class="x_content"><canvas class="barXlsx"></canvas></div>
+    </div>
   </div>
-</div>
-
+</section>
+<br />
 <script>
   /*import { correlacao, futura } from "./modules/correlacao.js";
   document.getElementById("correBtn").addEventListener("click",correlacao)
