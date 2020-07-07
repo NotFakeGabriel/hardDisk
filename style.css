@@ -41,7 +41,7 @@ a:hover {
   color: #ffffff;
   font-weight: bold;
 }
-#resultados1,#resultados{
+#resultados1,#resultados,#resulBino,#normalResul,#uniformeResul,#correResul,#futuResul{
   font-weight: bold;
 }
 #divquali{
@@ -52,4 +52,13 @@ a:hover {
 }
 #divupload{
   display: none;
+}
+#normal,#uniforme,#binomial{
+  display: none;
+}
+#deUniforme,#ateUniforme,#de,#ate{
+  display: none;
+}
+#cards{
+  margin-top: 3%;
 }

@@ -67,7 +67,7 @@ function quantitativaCont() {
   ${separa[0]} / 
   DP = ${vari[0]} / CV = ${vari[1]}`;
   const ctx = document.getElementsByClassName("bar");
-  bar(ctx, valores, linhaTxt, true);
+  bar(ctx, col4, linhaTxt, true);
 }
 
 function textosColuna1(valores) {
